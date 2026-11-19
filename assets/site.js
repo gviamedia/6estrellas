@@ -4,7 +4,7 @@
    una CMP certificada por Google (TCF v2.2); este banner no la sustituye. */
 (function () {
   "use strict";
-  var KEY = "seisestrellas_consent", CONSENT_VERSION = 2, MAX_AGE = 365 * 24 * 3600 * 1000;
+  var KEY = "seisestrellas_consent", CONSENT_VERSION = 3, MAX_AGE = 365 * 24 * 3600 * 1000;
 
   function read() {
     try {
@@ -18,7 +18,7 @@
     c.t = Date.now(); c.v = CONSENT_VERSION;
     try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
     // Si se retira un permiso ya concedido, recargamos para no dejar scripts en marcha.
-    if (prev && ((prev.analytics && !c.analytics) || (prev.ads && !c.ads))) { location.reload(); return; }
+    if (prev && prev.ads && !c.ads) { location.reload(); return; }
     apply(c);
   }
   /* Carga diferida de scripts de terceros. Añade en el HTML:
@@ -80,40 +80,54 @@
   var box = document.getElementById("consent");
   var root = document.documentElement;
   function setPad() { root.style.setProperty("--consent-h", box.hidden ? "0px" : (box.offsetHeight + 16) + "px"); }
-  function close() { box.hidden = true; setPad(); }
+  var opener = null;
+  function close() {
+    box.hidden = true; setPad();
+    // Devolver el foco a donde estaba (p. ej. el botón «Configurar cookies» del pie).
+    if (opener && document.contains(opener)) { try { opener.focus(); } catch (e) {} }
+    opener = null;
+  }
   function toggleOpts(on) {
     document.getElementById("consent-opts").hidden = !on;
     box.querySelector('[data-consent="save"]').hidden = !on;
     box.querySelector('[data-consent="config"]').hidden = on;
     setPad();
   }
-  function open(showOpts) {
+  function open(showOpts, from) {
     if (!box) return;
     var c = read() || {};
-    var a = document.getElementById("c-analytics"), d = document.getElementById("c-ads");
-    if (a) a.checked = !!c.analytics;
+    var d = document.getElementById("c-ads");
     if (d) d.checked = !!c.ads;
+    if (from) opener = from;
     box.hidden = false;
     toggleOpts(!!showOpts);
+    if (from) { var f = box.querySelector("input:not([disabled]), button"); if (f) f.focus(); }
   }
   if (box) {
     box.addEventListener("click", function (e) {
       var b = e.target.closest("[data-consent]"); if (!b) return;
       var k = b.getAttribute("data-consent");
-      if (k === "accept") { close(); save({ analytics: true, ads: true }); }
-      else if (k === "reject") { close(); save({ analytics: false, ads: false }); }
-      else if (k === "config") { toggleOpts(true); }
+      if (k === "accept") { close(); save({ ads: true }); }
+      else if (k === "reject") { close(); save({ ads: false }); }
+      else if (k === "config") {
+        toggleOpts(true);
+        var f = document.getElementById("c-ads"); if (f) f.focus();   // no perder el foco al ocultar «Configurar»
+      }
       else if (k === "save") {
-        var c = { analytics: document.getElementById("c-analytics").checked, ads: document.getElementById("c-ads").checked };
+        var c = { ads: document.getElementById("c-ads").checked };
         close(); save(c);
       }
+    });
+    // Escape cierra el aviso sin guardar elección (equivale a no consentir: no se cargan anuncios).
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !box.hidden) { close(); }
     });
     var cur = read();
     if (cur) apply(cur); else { open(false); fillAds({}); }
     window.addEventListener("resize", function () { if (!box.hidden) setPad(); });
   }
   document.querySelectorAll("[data-open-consent]").forEach(function (b) {
-    b.addEventListener("click", function () { open(true); });
+    b.addEventListener("click", function () { open(true, b); });
   });
 
   /* Formulario de correo. Para activarlo con Brevo: crea el formulario en Brevo con doble
