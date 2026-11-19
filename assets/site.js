@@ -4,7 +4,7 @@
    una CMP certificada por Google (TCF v2.2); este banner no la sustituye. */
 (function () {
   "use strict";
-  var KEY = "seisestrellas_consent", CONSENT_VERSION = 1, MAX_AGE = 365 * 24 * 3600 * 1000;
+  var KEY = "seisestrellas_consent", CONSENT_VERSION = 2, MAX_AGE = 365 * 24 * 3600 * 1000;
 
   function read() {
     try {
