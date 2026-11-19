@@ -50,7 +50,7 @@
         a.dataset.done = "1";
         var w = a.dataset.w, h = a.dataset.h, f = document.createElement("iframe");
         f.width = w; f.height = h; f.title = "Publicidad"; f.setAttribute("scrolling", "no");
-        f.setAttribute("sandbox", "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation");
+        f.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation");
         f.srcdoc = '<!doctype html><body style="margin:0"><script>atOptions={key:"' + a.dataset.ad + '",format:"iframe",height:' + h + ',width:' + w + ',params:{}}<\/script><script src="' + a.dataset.src + '"><\/script>';
         box.innerHTML = ""; box.appendChild(f);
       }
@@ -103,7 +103,7 @@
   /* Formulario de correo. Para activarlo con Brevo: crea el formulario en Brevo con doble
      opt-in y pon su URL de acción en BREVO_ACTION al ejecutar build.py. */
   document.querySelectorAll(".email-form").forEach(function (f) {
-    var msg = f.querySelector(".form-msg"), mail = f.querySelector('input[type="email"]'), ok = f.querySelector('input[type="checkbox"]');
+    var msg = f.querySelector(".form-msg"), mail = f.querySelector('input[type="email"]'), ok = f.querySelector('input[name="OPT_IN"]'), age = f.querySelector('input[name="AGE_OK"]');
     function err(el, t) {
       msg.textContent = t; msg.classList.add("is-error");
       el.setAttribute("aria-invalid", "true"); el.setAttribute("aria-describedby", msg.id); el.focus();
