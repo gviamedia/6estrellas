@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gviamedia.github.io/6estrellas/sitemap.xml
+Sitemap: https://6estrellas.org/sitemap.xml
