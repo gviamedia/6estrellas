@@ -6,7 +6,7 @@ import json, pathlib, re, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PUB = "2026-11-20T01:00:00+01:00"
-HUB = {"preguntas": "Preguntas", "novedades": "PC y Online"}
+HUB = {"preguntas": "Preguntas", "novedades": "PC y Online", "dinero": "Dinero y vehículos", "problemas": "Problemas técnicos", "lugares": "Leonida"}
 
 PAGINAS = [
     dict(dir="preguntas", slug="trofeos-logros",
@@ -110,6 +110,79 @@ PAGINAS = [
          sources=[("https://www.svg.com/2245882/gta-6-online-multiplayer-rockstar-updates/", "SVG: lo que Rockstar ha dicho (y no) sobre el multijugador de GTA 6"),
                   ("https://beebom.com/gta-6-single-player-game/", "Beebom: ¿es GTA 6 solo para un jugador al lanzamiento?")],
          related=[("preguntas/cambiar-jason-lucia.html", "¿Se puede cambiar entre Jason y Lucia cuando quieras?"), ("novedades/gta-6-online.html", "¿GTA 6 tiene modo online? Estado actual"), ("preguntas/jugar-sin-internet.html", "¿Se puede jugar a GTA 6 sin internet?")]),
+    dict(dir="dinero", slug="coche-mas-rapido",
+         h1="¿Cuál es el coche más rápido de GTA 6? Ranking provisional",
+         desc="GTABase aún no ha terminado de medir las velocidades. Su ranking provisional pone al Infernus '96, al Cheetah '95 y al Comet '88 en cabeza.",
+         card="Aún no hay velocidades medidas. El ranking provisional de GTABase pone en cabeza al Infernus '96.",
+         chip=("warn", "Una sola fuente"),
+         answer="Todavía no se puede decir con seguridad. GTABase, que prueba los coches en el juego, no ha terminado sus mediciones; su ranking provisional del 19 de noviembre pone en cabeza al Pegassi Infernus '96, seguido del Grotti Cheetah '95 y el Pfister Comet '88.",
+         body="""<h2>Ranking provisional por velocidad máxima</h2>
+<ol>
+<li><strong>Pegassi Infernus '96:</strong> 7,1 sobre 10.</li>
+<li><strong>Grotti Cheetah '95:</strong> 6,6 sobre 10.</li>
+<li><strong>Pfister Comet '88:</strong> 6,1 sobre 10.</li>
+</ol>
+<p>Son puntuaciones sobre 10, no kilómetros por hora. GTABase lista 30 coches y avisa de que el orden no es definitivo: añadirá posiciones y cifras cuando termine de probar cada coche en el juego.</p>
+<h2>Otro ranking de la misma web</h2>
+<p>En su lista de superdeportivos, ordenada por estadísticas generales, GTABase pone arriba al Pfister Comet '88, al Obey 8F Drafter y al Annis Elegy '90, y dice que está probando todos los vehículos en el juego. Esa lista no muestra fecha.</p>
+<h2>Cómo conseguirlos</h2>
+<p>GTABase aún marca como «próximamente» el modo de conseguir casi todos los coches, y no hemos encontrado una segunda fuente fiable. Para quedarte con un coche que ya tienes, mira <a href="coches-garajes.html">garajes y Pay 'n' Spray</a>.</p>""",
+         sources=[("https://www.gtabase.com/articles/gta-6/gta-6-fastest-cars-ranked-list-by-top-speed", "GTABase: coches más rápidos de GTA 6, ranking por velocidad máxima (actualizado el 19-11-2026)"),
+                  ("https://www.gtabase.com/gta-6/vehicles/best-vehicles/", "GTABase: lista de superdeportivos de GTA 6 por estadísticas")],
+         related=[("dinero/coches-garajes.html", "¿Cómo quedarte un coche en GTA 6? Garajes y Pay 'n' Spray"), ("dinero/ganar-dinero.html", "¿Cómo ganar dinero al empezar GTA 6?"), ("preguntas/perder-a-la-policia.html", "¿Cómo perder a la policía en GTA 6? Así funciona el perfil criminal")]),
+
+    dict(dir="preguntas", slug="misiones-capitulo-1",
+         h1="¿Cuáles son las misiones del Capítulo 1 de GTA 6? Lista y cuáles se pueden perder",
+         desc="Las misiones del Prólogo y del Capítulo 1 de GTA 6 según las guías del día del lanzamiento, y cuáles son opcionales y perdibles.",
+         card="Las misiones del Capítulo 1 según las guías del día del lanzamiento, y cuáles se pueden perder.",
+         chip=("warn", "Parcialmente confirmado"),
+         answer="La historia tiene un Prólogo y cinco capítulos, según GTABase. En el Capítulo 1, la guía de Vandal del 19 de noviembre enumera nueve misiones, entre ellas «Día de pesca» y «¡Oye, Arnold!». Dos de ellas son opcionales y se pueden perder.",
+         body="""<h2>Prólogo</h2>
+<p>Según Vandal, el Prólogo consta de una única misión, que se llama igual que el capítulo.</p>
+<h2>Capítulo 1</h2>
+<p>Las misiones que enumera la guía de Vandal (solo títulos, sin detalles de la trama):</p>
+<ul>
+<li>Día de pesca</li>
+<li>Equípate</li>
+<li>Es solo un rasguño</li>
+<li>Costes de laboratorio</li>
+<li>Fontanería</li>
+<li>Atención no deseada</li>
+<li>Consigue el ron de Shirley (opcional)</li>
+<li>Roba la scooter (opcional)</li>
+<li>¡Oye, Arnold!</li>
+</ul>
+<p>GTABase, en inglés, sigue un orden algo distinto y añade más misiones del capítulo, como «Island Dreams». Las guías aún no coinciden en el orden exacto, así que no lo damos por cerrado.</p>
+<h2>Cuáles se pueden perder</h2>
+<p>GTABase marca como opcionales y perdibles «Get Shirley's Rum» y «Steal the Scooter», que corresponden a «Consigue el ron de Shirley» y «Roba la scooter». Vandal también avisa de que su guía señala el contenido que se puede perder. Como <a href="repetir-misiones.html">no se pueden repetir misiones</a>, conviene guardar antes: mira <a href="guardar-partida.html">cómo se guarda la partida</a>.</p>
+<h2>Capítulos 2 a 5</h2>
+<p>El 19 de noviembre, Vandal tenía los capítulos 2 a 5 marcados como «en construcción». Ampliaremos esta página cuando haya guías publicadas.</p>""",
+         sources=[("https://vandal.elespanol.com/guias/guia-grand-theft-auto-vi-trucos-consejos-y-secretos/historia-y-misiones", "Vandal: historia y misiones en GTA 6 al 100 % (19-11-2026)"),
+                  ("https://vandal.elespanol.com/guias/guia-grand-theft-auto-vi-trucos-consejos-y-secretos/prologo", "Vandal: todas las misiones del Prólogo y cómo completarlas (19-11-2026)"),
+                  ("https://www.gtabase.com/gta-6/missions/", "GTABase: guía de misiones de la historia de GTA 6")],
+         related=[("preguntas/repetir-misiones.html", "¿Se pueden repetir las misiones en GTA 6?"), ("preguntas/guardar-partida.html", "¿Cómo se guarda la partida en GTA 6?"), ("preguntas/cuanto-dura.html", "¿Cuánto dura GTA 6? Horas de historia y del 100 %")]),
+
+    dict(dir="problemas", slug="psn-caido-inicio-sesion",
+         h1="¿PSN caído en el lanzamiento de GTA 6? Qué se sabe de los problemas de inicio de sesión",
+         desc="Miles de reportes de fallos de inicio de sesión y conexión en PSN el día del lanzamiento. Qué dicen las fuentes, qué no está confirmado y qué probar.",
+         card="Hubo miles de reportes de fallos en PSN el día del lanzamiento. Sony no ha vinculado la causa con GTA 6.",
+         chip=("warn", "Parcialmente confirmado"),
+         answer="El día del lanzamiento hubo miles de reportes de problemas de inicio de sesión y de conexión en PlayStation Network. Sony no ha dicho cuál fue la causa ni la ha vinculado con GTA 6, y no hay confirmación de Rockstar ni de Microsoft.",
+         body="""<h2>Lo que se sabe</h2>
+<ul>
+<li><strong>Reportes:</strong> el 19 de noviembre, Downdetector registró picos de miles de reportes. IBTimes y Digit dan cifras distintas, así que no damos un número.</li>
+<li><strong>Síntomas:</strong> problemas de inicio de sesión y de conexión con los servidores. Según Digit, quien intentaba entrar veía un mensaje de «services are busy» (los servicios están ocupados).</li>
+<li><strong>Estado de Sony:</strong> según Endgame Tools, la página de estado de Sony avisó de juegos y funciones sociales degradados en más de 60 países desde las 05:33 hasta las 06:04 UTC, y a las 11:40 UTC no mostraba incidencias.</li>
+</ul>
+<h2>Lo que no está confirmado</h2>
+<p>La causa. Digit apunta a que podría deberse a la demanda de GTA 6, pero IBTimes dice que no hay evidencia que lo vincule. Sony no ha hecho declaraciones sobre ello en las fuentes que hemos revisado. Estas cifras y horas son del día del lanzamiento y la situación puede haber cambiado.</p>
+<h2>Qué puedes probar</h2>
+<p>Recomendaciones de la prensa, no oficiales: reinicia la consola, instala la actualización que pida el juego y espera un rato antes de reintentar. Mira antes la página de estado de PlayStation. Endgame Tools añade que en PS5 el juego puede estar esperando a una versión del software del sistema, la 26.07-14.23.00; es una sola fuente, compruébalo en tu consola.</p>
+<p>Si el problema es que el juego no arranca, mira <a href="no-carga-errores.html">GTA 6 no carga o no arranca</a>.</p>""",
+         sources=[("https://www.ibtimes.co.uk/gta-vi-launch-psn-login-connection-problems-1833330", "IBTimes UK: problemas de PSN el día del lanzamiento de GTA VI (19-11-2026)"),
+                  ("https://www.digit.in/news/general/playstation-network-down-thousands-of-users-report-login-issues-amid-gta-6-launch.html", "Digit: PSN caído, miles de usuarios con problemas de inicio de sesión (19-11-2026)"),
+                  ("https://endgametools.com/en/gta-6/news/gta-6-launch-day", "Endgame Tools: GTA 6 el día del lanzamiento, servidores, problemas conocidos y actualizaciones (19-11-2026)")],
+         related=[("problemas/no-carga-errores.html", "GTA 6 no carga o no arranca: soluciones en PS5 y Xbox"), ("problemas/tamano-descarga.html", "¿Cuánto ocupa GTA 6 en PS5 y Xbox?"), ("novedades/actualizaciones-parches.html", "¿Hay parches de GTA 6? Qué se sabe de la actualización 1.002")]),
 ]
 
 
