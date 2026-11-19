@@ -61,7 +61,11 @@
           window.atOptions = { key: a.dataset.ad, format: "iframe", height: +a.dataset.h, width: +a.dataset.w, params: {} };
           var s = document.createElement("script");
           s.src = a.dataset.src; s.async = false;
-          s.onload = s.onerror = function () { setTimeout(next, 300); };
+          var house = function () {
+            if (!box.querySelector("iframe, ins, a, img")) box.insertAdjacentHTML("beforeend", '<a class="ad-house" href="' + a.dataset.house + '">Guía de inicio gratis de GTA 6 →</a>');
+          };
+          s.onload = function () { setTimeout(function () { house(); next(); }, 3000); };
+          s.onerror = function () { house(); setTimeout(next, 300); };
           box.appendChild(s);
         });
         runQueue();
