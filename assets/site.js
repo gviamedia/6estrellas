@@ -4,7 +4,7 @@
    una CMP certificada por Google (TCF v2.2); este banner no la sustituye. */
 (function () {
   "use strict";
-  var KEY = "gl_consent", CONSENT_VERSION = 1, MAX_AGE = 365 * 24 * 3600 * 1000;
+  var KEY = "pulsastart_consent", CONSENT_VERSION = 1, MAX_AGE = 365 * 24 * 3600 * 1000;
 
   function read() {
     try {
@@ -31,6 +31,33 @@
       var n = document.createElement("script");
       if (s.dataset.src) { n.src = s.dataset.src; n.async = true; } else { n.text = s.text; }
       s.dataset.loaded = "1"; document.head.appendChild(n);
+    });
+    fillAds(c);
+  }
+
+  /* Huecos de anuncio. Cada <aside class="ad" data-ad="CLAVE" data-w data-h data-src-base> se
+     rellena con un iframe aislado SOLO si el usuario acepta publicidad. Si no, se muestra un
+     anuncio propio del mismo tamaño para que no haya saltos de maquetación. */
+  function fillAds(c) {
+    document.querySelectorAll(".ad[data-ad]").forEach(function (a) {
+      if (a.dataset.done) return;
+      var box = a.querySelector(".ad-box");
+      if (!c.ads || !a.dataset.ad) {
+        if (!box.firstChild) box.innerHTML = '<a class="ad-house" href="' + a.dataset.house + '">Guía de inicio gratis de GTA 6 →</a>';
+        return;
+      }
+      function load() {
+        a.dataset.done = "1";
+        var w = a.dataset.w, h = a.dataset.h, f = document.createElement("iframe");
+        f.width = w; f.height = h; f.title = "Publicidad"; f.setAttribute("scrolling", "no");
+        f.setAttribute("sandbox", "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation");
+        f.srcdoc = '<!doctype html><body style="margin:0"><script>atOptions={key:"' + a.dataset.ad + '",format:"iframe",height:' + h + ',width:' + w + ',params:{}}<\/script><script src="' + (a.dataset.srcBase || "https://www.highperformanceformat.com") + '/' + a.dataset.ad + '/invoke.js"><\/script>';
+        box.innerHTML = ""; box.appendChild(f);
+      }
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: "300px" });
+        io.observe(a);
+      } else load();
     });
   }
 
@@ -66,7 +93,7 @@
       }
     });
     var cur = read();
-    if (cur) apply(cur); else open(false);
+    if (cur) apply(cur); else { open(false); fillAds({}); }
     window.addEventListener("resize", function () { if (!box.hidden) setPad(); });
   }
   document.querySelectorAll("[data-open-consent]").forEach(function (b) {
@@ -84,11 +111,13 @@
     function clear(el) { el.removeAttribute("aria-invalid"); msg.classList.remove("is-error"); }
     mail.addEventListener("input", function () { clear(mail); });
     ok.addEventListener("change", function () { clear(ok); });
+    if (age) age.addEventListener("change", function () { clear(age); });
     f.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!mail.value.trim()) return err(mail, "Escribe tu correo.");
       if (!mail.checkValidity()) return err(mail, "Al correo le falta algo (ej.: nombre@gmail.com).");
       if (!ok.checked) return err(ok, "Marca la casilla para recibir la guía.");
+      if (age && !age.checked) return err(age, "Confirma que tienes 18 años o más.");
       msg.classList.remove("is-error");
       var action = f.getAttribute("data-brevo-action");
       if (!action) { msg.textContent = "La suscripción todavía no está activa. Mientras tanto, puedes leer la guía en la página Guía gratis."; return; }

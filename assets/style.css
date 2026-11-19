@@ -147,3 +147,21 @@ mark.fill{background:var(--fill);color:var(--ink);padding:0 3px;border-radius:3p
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media print{.site-header,.site-footer,.email,.consent,.related{display:none!important}body{background:#fff;color:#000}}
+
+/* Menú móvil en rejilla (auditoría UX) */
+@media (max-width:640px){
+  .site-header nav{overflow:visible;-webkit-mask-image:none;mask-image:none}
+  .site-header nav ul{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:0 8px;padding-right:0;white-space:nowrap;font-size:.875rem}
+  .site-header nav a{padding:9px 0;min-height:40px}
+  .brand{padding-block:4px}
+  .crumbs [aria-current],.crumbs span:nth-last-of-type(2){display:none}
+  .consent-in{padding:12px}.consent-in p{font-size:.85rem}
+}
+@media (max-width:359px){.site-header nav ul{grid-template-columns:repeat(2,auto)}}
+/* Huecos de anuncio con espacio reservado (sin CLS) */
+.ad{margin:28px 0;text-align:center;contain:layout paint}
+.ad-label{display:block;font-size:.72rem;line-height:16px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ad-box{width:var(--ad-w,300px);max-width:100%;height:var(--ad-h,250px);margin:0 auto;background:var(--tint);border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ad-box iframe{display:block;border:0;width:100%;height:100%}
+.ad-house{font-weight:600;padding:12px}
+@media print{.ad{display:none!important}}
