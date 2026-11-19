@@ -1,10 +1,10 @@
-/* Pulsa Start: consentimiento de cookies y formulario de correo. Sin dependencias.
+/* 6 Estrellas: consentimiento de cookies y formulario de correo. Sin dependencias.
    IMPORTANTE: si añades un proveedor nuevo (anuncios, estadísticas), sube CONSENT_VERSION
    para que todo el mundo vuelva a ver el aviso. Para AdSense en el EEE hace falta además
    una CMP certificada por Google (TCF v2.2); este banner no la sustituye. */
 (function () {
   "use strict";
-  var KEY = "pulsastart_consent", CONSENT_VERSION = 1, MAX_AGE = 365 * 24 * 3600 * 1000;
+  var KEY = "seisestrellas_consent", CONSENT_VERSION = 1, MAX_AGE = 365 * 24 * 3600 * 1000;
 
   function read() {
     try {

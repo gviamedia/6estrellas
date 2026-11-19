@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gviamedia.github.io/pulsastart/sitemap.xml
+Sitemap: https://gviamedia.github.io/6estrellas/sitemap.xml
