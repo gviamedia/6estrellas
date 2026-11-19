@@ -32,13 +32,15 @@
     }
     return loading;
   }
+  // Coincide al principio de una palabra (así «pc» no casa con «capcom»).
+  function has(text, w) { return (" " + text).indexOf(" " + w) > -1; }
   function score(item, tokens) {
     var total = 0;
     for (var i = 0; i < tokens.length; i++) {
       var alts = [tokens[i]].concat(SIN[tokens[i]] || []), best = 0;
       for (var j = 0; j < alts.length; j++) {
         var w = alts[j], pts = (j === 0 ? 1 : 0.7);
-        var v = (item._t.indexOf(w) > -1 ? 6 : 0) + (item._r.indexOf(w) > -1 ? 3 : 0) + (item._c.indexOf(w) > -1 ? 1 : 0);
+        var v = (has(item._t, w) ? 6 : 0) + (has(item._r, w) ? 3 : 0) + (has(item._c, w) ? 1 : 0);
         if (v * pts > best) best = v * pts;
       }
       if (!best) return 0;      // todas las palabras deben aparecer (en ella o en un sinónimo)
