@@ -42,7 +42,7 @@
     document.querySelectorAll(".ad[data-ad]").forEach(function (a) {
       if (a.dataset.done) return;
       var box = a.querySelector(".ad-box");
-      if (!c.ads || !a.dataset.ad) {
+      if (!c.ads || !a.dataset.ad || !a.dataset.src) {
         if (!box.firstChild) box.innerHTML = '<a class="ad-house" href="' + a.dataset.house + '">Guía de inicio gratis de GTA 6 →</a>';
         return;
       }
@@ -51,7 +51,7 @@
         var w = a.dataset.w, h = a.dataset.h, f = document.createElement("iframe");
         f.width = w; f.height = h; f.title = "Publicidad"; f.setAttribute("scrolling", "no");
         f.setAttribute("sandbox", "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation");
-        f.srcdoc = '<!doctype html><body style="margin:0"><script>atOptions={key:"' + a.dataset.ad + '",format:"iframe",height:' + h + ',width:' + w + ',params:{}}<\/script><script src="' + (a.dataset.srcBase || "https://www.highperformanceformat.com") + '/' + a.dataset.ad + '/invoke.js"><\/script>';
+        f.srcdoc = '<!doctype html><body style="margin:0"><script>atOptions={key:"' + a.dataset.ad + '",format:"iframe",height:' + h + ',width:' + w + ',params:{}}<\/script><script src="' + a.dataset.src + '"><\/script>';
         box.innerHTML = ""; box.appendChild(f);
       }
       if ("IntersectionObserver" in window) {
