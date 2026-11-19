@@ -38,6 +38,13 @@
   /* Huecos de anuncio. Cada <aside class="ad" data-ad="CLAVE" data-w data-h data-src-base> se
      rellena con un iframe aislado SOLO si el usuario acepta publicidad. Si no, se muestra un
      anuncio propio del mismo tamaño para que no haya saltos de maquetación. */
+  /* atOptions es global en el código de Adsterra: cargamos los huecos de uno en uno. */
+  var adQueue = [], adBusy = false;
+  function runQueue() {
+    if (adBusy || !adQueue.length) return;
+    adBusy = true;
+    adQueue.shift()(function () { adBusy = false; runQueue(); });
+  }
   function fillAds(c) {
     document.querySelectorAll(".ad[data-ad]").forEach(function (a) {
       if (a.dataset.done) return;
@@ -47,12 +54,17 @@
         return;
       }
       function load() {
+        if (a.dataset.done) return;
         a.dataset.done = "1";
-        var w = a.dataset.w, h = a.dataset.h, f = document.createElement("iframe");
-        f.width = w; f.height = h; f.title = "Publicidad"; f.setAttribute("scrolling", "no");
-        f.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation");
-        f.srcdoc = '<!doctype html><body style="margin:0"><script>atOptions={key:"' + a.dataset.ad + '",format:"iframe",height:' + h + ',width:' + w + ',params:{}}<\/script><script src="' + a.dataset.src + '"><\/script>';
-        box.innerHTML = ""; box.appendChild(f);
+        adQueue.push(function (next) {
+          box.innerHTML = "";
+          window.atOptions = { key: a.dataset.ad, format: "iframe", height: +a.dataset.h, width: +a.dataset.w, params: {} };
+          var s = document.createElement("script");
+          s.src = a.dataset.src; s.async = false;
+          s.onload = s.onerror = function () { setTimeout(next, 300); };
+          box.appendChild(s);
+        });
+        runQueue();
       }
       if ("IntersectionObserver" in window) {
         var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: "300px" });
