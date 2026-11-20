@@ -6,8 +6,8 @@ Lo usan herramientas/rediseno.py (páginas en español ya escritas) y herramient
 import html
 
 BASE = "https://6estrellas.org/"
-CSS_V = 6
-JS_V = 8
+CSS_V = 7
+JS_V = 9
 SEARCH_V = 3
 THEME = "#f6f3ed"
 
@@ -80,8 +80,11 @@ def header(lang, p, actual=None, alt=None):
     if alt:
         otro = "en" if lang == "es" else "es"
         etiqueta = {"es": "Español", "en": "English"}
-        lang_nav = (f'<nav class="lang" aria-label="{t["idioma"]}"><span aria-current="true" title="{etiqueta[lang]}">{lang.upper()}</span>'
-                    f'<a class="lang-switch" href="{alt}" hreflang="{otro}" lang="{otro}" title="{etiqueta[otro]}">{otro.upper()}</a></nav>')
+        actual_html = f'<span aria-current="true" title="{etiqueta[lang]}">{lang.upper()}</span>'
+        otro_html = f'<a class="lang-switch" href="{alt}" hreflang="{otro}" lang="{otro}" title="{etiqueta[otro]}">{otro.upper()}</a>'
+        # Siempre en el mismo orden: ES EN.
+        pares = actual_html + otro_html if lang == "es" else otro_html + actual_html
+        lang_nav = f'<nav class="lang" aria-label="{t["idioma"]}">{pares}</nav>'
     return (f'<header class="site-header"><div class="wrap">\n'
             f'<div class="masthead"><a class="brand" href="{home}">{NOMBRE[lang]}</a>{lang_nav}</div>\n'
             f'<nav class="sections" aria-label="{t["secciones"]}"><ul>\n' + "".join(items) + '\n</ul></nav>\n'

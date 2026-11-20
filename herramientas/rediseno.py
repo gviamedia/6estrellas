@@ -146,6 +146,9 @@ def procesar(p, MAPA):
         s = entradillas(s)
         n = s.count('<li class="item">')
         s = re.sub(r'<p class="kicker">[^<]*</p><h1>', f'<p class="kicker">{n} respuestas</p><h1>', s, count=1)
+    # GitHub Pages solo sirve la 404 de la raíz: las URLs inexistentes de /en/ pasan a la 404 inglesa.
+    if es404 and MAPA and "location.replace('/en/404.html')" not in s:
+        s = s.replace("</head>", "<script>if(location.pathname.indexOf('/en/')===0&&location.pathname!=='/en/404.html')location.replace('/en/404.html');</script>\n</head>", 1)
     if rel == "index.html":
         s = re.sub(r'<main id="main">.*?</main>', lambda m: portada(), s, count=1, flags=re.S)
     if s != o:

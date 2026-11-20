@@ -65,6 +65,8 @@
           s.src = a.dataset.src; s.async = false; s.setAttribute("data-cfasync", "false");
           var house = function () {
             if (!box.querySelector("iframe, ins, a, img")) box.insertAdjacentHTML("beforeend", '<a class="ad-house" href="' + a.dataset.house + '">' + HOUSE + '</a>');
+            // Nombre accesible para el iframe que inserta Adsterra (auditoría, punto 21).
+            box.querySelectorAll("iframe:not([title])").forEach(function (f) { f.title = document.documentElement.lang === "en" ? "Advertisement" : "Publicidad"; });
           };
           s.onload = function () { setTimeout(function () { house(); next(); }, 3000); };
           s.onerror = function () { house(); setTimeout(next, 300); };
