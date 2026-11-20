@@ -3,35 +3,62 @@
 Estado a 20/11/2026. Todo lo descrito como "hecho" está publicado en `main` y comprobado en vivo.
 
 ## Hecho
-- **Rediseño (20/11/2026, publicado y comprobado en vivo en móvil y escritorio):** estilo de revista. Papel claro `#f6f3ed`, tinta `#121110`, un solo acento magenta `#d1006a` (contraste 4,7:1) solo en filetes, números, etiquetas y enlace activo. Oswald (titulares) y Source Serif 4 (cuerpo) alojadas en `assets/fonts/` con su licencia OFL; sin Google Fonts. Logo tipográfico, portada con pieza destacada + «Lo más consultado» + listas numeradas por sección, índices como listas de periódico con entradillas completas, respuesta corta con filete, fuentes numeradas, anuncio integrado y etiquetado. Sin modo oscuro, degradados, sombras ni esquinas redondeadas. Plantilla común en `herramientas/sitio.py`; `herramientas/rediseno.py` la aplica a las páginas en español (idempotente). Comprobado a 375 px sin desplazamiento horizontal; en producción, cero peticiones a Adsterra antes de aceptar.
-- **Revisión independiente de contenido (20/11/2026):** ver «Correcciones de la revisión» más abajo.
+- **Versión en inglés «Six Stars» (20/11/2026):** 48 páginas en `/en/`: portada, 5 índices, 35 artículos, guía de inicio (`beginners-guide.html`), sobre (`about.html`), aviso legal, privacidad, cookies, buscador (`search.html`) y 404. Redactada para lectores de EE. UU. (títulos, H1, descripciones y slugs en inglés; términos de la comunidad: *Wasted/Busted*, *fences*, *wanted level*, *safehouse*), no traducida frase a frase. Firma «Six Stars Editorial Team». Fuentes originales en inglés cuando existen (Rockstar Newswire, Rockstar Support, Take-Two IR, prensa en inglés); las que solo existen en español o alemán se marcan como tales. Etiquetas de certeza traducidas y explicadas en `about.html`. Precio en dólares (Take-Two: 79,99 $ y 99,99 $) y horas en ET.
+  - SEO: `lang="en"`, canonical propio, hreflang es/en/x-default recíprocos en las 47 parejas (x-default = español), JSON-LD con `inLanguage: "en"`, `og:locale en_US`, 43 URLs inglesas en el sitemap (las legales, el buscador y la 404 van con `noindex`, igual que en español).
+  - Selector ES/EN en la cabecera de todas las páginas, que lleva a la página equivalente.
+  - Mismo aviso de cookies y misma carga de Adsterra (un hueco por artículo, solo tras consentimiento), con textos en inglés. Buscador con su propio índice (`assets/search-index-en.json`) y sinónimos en inglés.
+  - La 404 de la raíz manda las URLs inexistentes de `/en/` a `/en/404.html` (GitHub Pages solo sirve la 404 de la raíz).
+  - Los huecos legales siguen pendientes, igual que en español; la versión española es el texto de referencia.
+- **Rediseño (20/11/2026, publicado y comprobado en vivo en móvil y escritorio):** estilo de revista. Papel claro `#f6f3ed`, tinta `#121110`, un solo acento magenta `#d1006a` (contraste 4,7:1) solo en filetes, números, etiquetas y enlace activo. Oswald (titulares) y Source Serif 4 (cuerpo) alojadas en `assets/fonts/` con su licencia OFL; sin Google Fonts. Logo tipográfico, portada con pieza destacada + «Lo más consultado» + listas numeradas por sección, índices como listas de periódico con entradillas completas, respuesta corta con filete, fuentes numeradas, anuncio integrado y etiquetado. Sin modo oscuro, degradados, sombras ni esquinas redondeadas. Comprobado a 375 px sin desplazamiento horizontal; en producción, cero peticiones a Adsterra antes de aceptar.
+- **Revisión independiente (20/11/2026):** ver «Correcciones de la revisión».
 - **Lote 1:** `.gitignore`, formularios de email retirados, un solo anuncio por artículo, banner de cookies compacto y accesible, texto de cookies acorde al código.
 - **Lote 2:** ficha «Redacción 6 Estrellas» en `sobre.html` (contacto `contacto@6estrellas.org`), firma en cada artículo, etiquetas de certeza sin «probado», correcciones de contenido, guía PDF huérfana retirada.
 - **Lote 3:** enlaces internos a páginas poco enlazadas, H1 de la policía alineado con la consulta, atribución del mapa.
 - **Lote 4:** buscador interno (`buscar.html`, `noindex`, fuera del sitemap), fechas reales (`dateModified` y `lastmod` desde git), declaración oficial de Take-Two en `gta-6-online`.
-- **Páginas de lanzamiento (8):** trofeos y logros, parches (1.002), armas, mods, cooperativo, coche más rápido, misiones del Capítulo 1 y fallos de PSN el día del lanzamiento. Todas en su índice, la portada, el sitemap y el buscador.
-- **Revisión de páginas existentes con fuentes del 19-20/11/2026:**
-  - `gta-6-pc`: añadido el comunicado oficial de Take-Two (19-11-2026), que solo cita PS5 y Xbox Series X|S y no menciona PC.
-  - `emisoras-radio`: GTABase lista 21 emisoras pero dice que la lista completa no se ha revelado oficialmente; se mantienen las 6 confirmadas por Rockstar.
-  - `trofeos-logros`: la guía de GTABase no ha cambiado (18-11-2026); añadido que 28 son ocultos.
-  - `armas`: **no se ha vuelto a comprobar** (no apareció una fuente nueva); sigue con una sola fuente.
+- **Páginas de lanzamiento (8):** trofeos y logros, parches (1.002), armas, mods, cooperativo, coche más rápido, misiones del Capítulo 1 y fallos de PSN.
 - Ramas `mejoras/lote-3-contenido` y `mejoras/lote-4-buscador` borradas. Queda `mejoras/lote-1-quick-wins` (ya fusionada, se puede borrar).
 
+## Correcciones de la revisión (20/11/2026)
+Fuentes abiertas y leídas (GamesRadar y PC Gamer, que no se leen sin JavaScript, con navegador). Casi todo se sostenía; se corrigió esto:
+- `xbox-one-ps4`: decía que hacía falta Game Pass «según la ficha de Xbox»; la ficha no lo dice. Ahora se apoya en el soporte de Rockstar (nube en Series X|S y Xbox One con ajustes de Series S; Remote Play) y dice que Rockstar no detalla la suscripción.
+- `gta-plus` y `precio-ediciones`: el plazo «31/03/2027» atribuido a la PS Store no aparece en ella; retirado. El «10 % sin concretar» es, según Vandal, en la venta de vehículos. Añadido el Newswire de Rockstar (GTA+ ya incluye ventajas de GTA VI) y que las reservas físicas también traían el Pack Vintage Vice City.
+- `cuanto-dura`: Nelson habló de una partida durante el desarrollo, no de una «versión previa»; la descripción ya no atribuye las 80 h a «Rockstar» en general; añadidas las 50 h de campaña (Demócrata/MeriStation), que respaldan el «50 a 80».
+- `guardar-partida`: etiqueta «Una sola fuente» con dos fuentes; ahora con GamesRadar, Vandal y PowerPyx y cuándo no se puede guardar. `trucos`: tres fuentes coinciden; etiqueta corregida.
+- `comprar-casas`: «Brian le deja la casa gratis» → sin alquiler a cambio de ayudarle (VICE); fuera «pendiente de verificar en el juego», que insinuaba pruebas propias.
+- Índice de Preguntas: decía «99 en OpenCritic» sin fuente; retirado.
+- `idioma-espanol`: añadida la PS Store (voz en inglés; «Español» y «Español (México)»). `coches-garajes`: el artículo de PC Games es del 8/09/2026, previo al lanzamiento, y ahora se dice. `ganar-dinero`: la nota de este archivo que decía que era de prelanzamiento era errónea (PC Gamer y GamesRadar son del 19/11); añadidos atracos por puerta trasera y Pilot Pete.
+- Legales: la privacidad hablaba de una lista de correo que no existe y el aviso legal de una «guía en PDF» retirada; corregidos. Descripciones de las legales ampliadas; títulos largos (misiones, PSN) acortados.
+- Técnico: código muerto del formulario de correo fuera de `site.js`; título accesible en el iframe del anuncio; orden de encabezados de la guía (h1 → h2); BreadcrumbList en los 5 índices; `mantenimiento.py` ya no cambia `dateModified` por commits de diseño («Diseño:»).
+
+## Backlog de la auditoría (26 puntos) frente a lo hecho
+- **Hecho:** 2, 3, 4, 5, 6, 7, 9, 11 (no hay imágenes de Rockstar), 12, 13, 14, 19 (buscador), 21, 25. **8** en parte: etiquetas por artículo y explicación en `sobre.html`; no hay bloque «cómo lo hemos comprobado» por artículo porque repetiría la sección de fuentes. **15** en parte: 8 de 9 temas (falta lo de abajo). **10** en parte: `herramientas/sitio.py` (cabecera, menú, pie, aviso), `rediseno.py` y `generar_en.py` dan una plantilla común; el contenido en español sigue en los HTML.
+- **Anulados por el dueño:** 16 (pruebas propias) y la puerta del gestor.
+- **Dependen del dueño:** 1 (datos del titular: siguen pendientes por decisión suya), 17 (Search Console/Bing: no hay acceso), 23 (canal de distribución), 26 (registro de marca).
+- **No se hacen, con motivo:**
+  - 18 (Brevo y lista de correo): sin tráfico medido no compensa el trabajo legal y de mantenimiento; la privacidad ya dice que no hay lista.
+  - 19 (RSS y «Actualizado hoy»): poco impacto con el tráfico actual; las fechas reales ya están en cada página y en el sitemap.
+  - 20 (imágenes propias por página): esfuerzo medio y Discover improbable sin tráfico; no se pueden usar capturas de Rockstar.
+  - 24 (aviso de spoilers): no hay spoilers publicados (las misiones van solo con títulos; finales sin detalles).
+  - 15 restantes (descarga lenta, precios por país en Latinoamérica, GTA 6 frente a GTA V, DLC): no hay fuente fiable comprobada; precios por país exigirían revisar cada tienda.
+
 ## Falta, por orden
-1. **Vigilar y actualizar** (páginas vivas): `trofeos-logros` (lista oficial), `armas`, `coche-mas-rapido` (GTABase añadirá velocidades medidas), `misiones-capitulo-1` (capítulos 2 a 5, «en construcción» en Vandal el 19-11), `psn-caido-inicio-sesion` (si Sony confirma la causa), `actualizaciones-parches` (notas oficiales).
-2. **Páginas que siguen sin fuente fiable posterior al lanzamiento:** dinero (cómo ganarlo, la página actual es de prelanzamiento), localizaciones y secretos. No se han publicado.
-3. **Generador de plantillas:** `herramientas/paginas_lanzamiento.py` y `herramientas/mantenimiento.py` cubren páginas nuevas, índice del buscador y fechas, pero no hay un generador completo para cambios globales.
+1. **Vigilar y actualizar** (páginas vivas, en los dos idiomas): `trofeos-logros`, `armas`, `coche-mas-rapido`, `misiones-capitulo-1` (capítulos 2 a 5), `psn-caido-inicio-sesion`, `actualizaciones-parches`. Revisión recomendada a los 7 días (27/11/2026) y a los 30 días (20/12/2026).
+2. **Páginas sin fuente fiable posterior al lanzamiento:** localizaciones y secretos. No se han publicado.
+3. Cuando se toque una página en español, actualizar también su equivalente en `herramientas/paginas_en.py` (y al revés).
 
 ## Cómo mantenerlo
-- Tras cambiar una página: commit del contenido, `python herramientas/mantenimiento.py todo`, commit con mensaje «Fechas: …», push.
-- Páginas nuevas: añadir su definición a `herramientas/paginas_lanzamiento.py` y ejecutarlo.
+- Cambio de contenido en español: editar el HTML, commit, `python herramientas/mantenimiento.py todo`, commit «Fechas: …», push.
+- Cambio de contenido en inglés: editar `herramientas/paginas_en.py`, `python herramientas/generar_en.py`, commit, `mantenimiento.py todo`, commit «Fechas: …», push.
+- Cambio de plantilla (cabecera, menú, pie, aviso, versiones `?v=`): editar `herramientas/sitio.py`, ejecutar `generar_en.py` y `rediseno.py`, commit con mensaje que empiece por «Diseño:».
+- Antes de cada push: `python herramientas/comprobar.py` (enlaces, hreflang recíprocos, canonical, JSON-LD, sitemap, anuncios, versiones) y `node --check assets/site.js assets/search.js`.
+- Páginas nuevas en español: `herramientas/paginas_lanzamiento.py`; su versión inglesa, una entrada más en `paginas_en.py`.
 
 ## Decisiones tomadas
-- **Sin fuente posterior al 19/11/2026, no se publica.** Las 3 páginas nuevas de esta tanda salen de fuentes del 19-11-2026 leídas completas: Vandal (misiones), GTABase (coches) e IBTimes, Digit y Endgame Tools (PSN).
-- **Misiones:** solo se publican títulos, sin detalles de la trama. Las guías no coinciden en el orden exacto y la página lo dice. Dos misiones se marcan como opcionales y perdibles (GTABase).
-- **Coches:** el ranking es provisional y de una sola fuente (GTABase). Son puntuaciones sobre 10, no km/h.
-- **PSN:** no se da ninguna cifra de Downdetector porque IBTimes y Digit discrepan. Sony no ha vinculado el fallo con GTA 6. Las soluciones son recomendaciones de la prensa y así se indican.
-- **No se ha publicado el estado de los servidores de Rockstar:** su página de soporte no se pudo leer (timeout).
-- `buscar.html` va con `noindex` y fuera del sitemap.
-- `datePublished` no se modifica; `dateModified` usa la hora del último commit de contenido.
+- **Sin fuente, no se publica**, en ningún idioma.
+- **Misiones:** solo títulos, sin trama. En inglés se usa la lista de GTABase (27 misiones en el Capítulo 1; GTABase se salta el número 24).
+- **Coches:** ranking provisional de una sola fuente (GTABase); puntuaciones sobre 10, no velocidades.
+- **PSN:** ninguna cifra de Downdetector (IBTimes y Digit discrepan).
+- **Inglés:** x-default apunta al español (versión original). La 404 inglesa y los legales en inglés llevan `noindex`, como en español.
+- `buscar.html` y `en/search.html` van con `noindex` y fuera del sitemap.
+- `datePublished` no se modifica; `dateModified` usa el último commit de contenido (ni «Fechas:» ni «Diseño:»).
 - Los commits usan el autor ya existente del repositorio.

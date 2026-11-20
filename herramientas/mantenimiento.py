@@ -18,7 +18,9 @@ import html, json, pathlib, re, subprocess, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SECCIONES = {"preguntas": "Preguntas", "dinero": "Dinero y vehículos", "problemas": "Problemas técnicos",
              "novedades": "PC y Online", "lugares": "Leonida"}
-NO_PAGINAS = {"404.html", "google178e73f6eb6598d4.html", "buscar.html"}
+SECCIONES_EN = {"questions": "Questions", "money": "Money & Cars", "issues": "Fixes",
+                "pc-online": "PC & Online", "leonida": "Leonida"}
+NO_PAGINAS = {"404.html", "google178e73f6eb6598d4.html", "buscar.html", "search.html"}
 
 
 def paginas():
@@ -31,11 +33,25 @@ def texto(fragmento):
 
 
 def indice():
+    _indice("es")
+    _indice("en")
+
+
+def _indice(lang):
+    """Índice del buscador por idioma. En inglés, las URLs son relativas a /en/."""
+    secs, guia, nombre = ((SECCIONES, "guia-inicio.html", "Guía") if lang == "es" else
+                          (SECCIONES_EN, "beginners-guide.html", "Guide"))
     items = []
     for p in sorted(paginas()):
         rel = p.relative_to(ROOT).as_posix()
+        if lang == "en":
+            if not rel.startswith("en/"):
+                continue
+            rel = rel[3:]
+        elif rel.startswith("en/"):
+            continue
         seccion = rel.split("/")[0]
-        if seccion not in SECCIONES and rel != "guia-inicio.html":
+        if seccion not in secs and rel != guia:
             continue
         if p.name == "index.html":
             continue
@@ -47,14 +63,14 @@ def indice():
         items.append({
             "u": rel,
             "t": texto(h1.group(1)) if h1 else rel,
-            "s": SECCIONES.get(seccion, "Guía"),
+            "s": secs.get(seccion, nombre),
             "r": texto(resp.group(1)) if resp else (texto(desc.group(1)) if desc else ""),
             "d": texto(desc.group(1)) if desc else "",
             "c": texto(cuerpo.group(1))[:1500] if cuerpo else "",
         })
-    out = ROOT / "assets" / "search-index.json"
+    out = ROOT / "assets" / ("search-index.json" if lang == "es" else "search-index-en.json")
     out.write_text(json.dumps(items, ensure_ascii=False, separators=(",", ":")), encoding="utf-8", newline="")
-    print(f"índice: {len(items)} páginas, {out.stat().st_size} bytes")
+    print(f"índice {lang}: {len(items)} páginas, {out.stat().st_size} bytes")
 
 
 def ultimo_cambio(rel):
