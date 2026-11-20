@@ -993,6 +993,130 @@ ARTICULOS.append(dict(es="preguntas/secretos-easter-eggs.html", en="questions/se
           ("https://playday.one/2026/11/19/gta-6-cool-dog-easter-egg/", "Playday: the jet ski dog Easter egg (Nov 19, 2026)")],
  related=["questions/cheats.html", "leonida/map-leonida.html", "leonida/radio-stations.html"]))
 
+# ---------------------------------------------------------------- SEO 20/11/2026: búsquedas reales (Trends y autocompletado)
+_A = {a["en"]: a for a in ARTICULOS}
+_CREDITS = ("https://www.rockstargames.com/VI/credits", "Rockstar Games: official GTA VI credits")
+_CAST = [("Jason Duval", "Dylan Rourke"), ("Lucia Caminos", "Manni L. Perez"), ("Cal Hampton", "Bobby Moynihan"),
+         ("Brian Heder", "Stephen Root"), ("Lori Heder", "Orlagh Cassidy"), ("Donnie", "Brad Carter"), ("Mandy", "Lexie Shoaibi"),
+         ("Boobie Ike", "Mike Forbs"), ("Dre'Quan", "Naiqui Macabroad"), ("Raul Bautista", "Manny Perez"),
+         ("Mia Caminos", "Roselyn Sanchez"), ("Bret Vogel", "Jariko Denman"), ("Moses “Mo” Watkins", "Aaron Morton"),
+         ("Randy Kozlov", "Serge Didenko"), ("Pilot Pete", "Carl Palmer"), ("Vicki", "Taryn Manning"),
+         ("Kordell Grant", "Michael Jai White"), ("DWNPLY", "Denzel Curry"), ("Arnold", "Caesar Samayoa"),
+         ("Shirley Baker", "Carolee Carmello"), ("The Hitman", "Michael Hollick")]
+_cast_rows = "".join(f"<tr><td>{p}</td><td>{a}</td></tr>" for p, a in _CAST)
+
+ARTICULOS.append(dict(es="lugares/personajes-actores.html", en="leonida/voice-actors-cast.html",
+ title="GTA 6 Voice Actors and Cast: Who Plays Jason, Lucia and Mandy",
+ h1="Who voices Jason and Lucia? GTA 6 voice actors and cast",
+ desc="GTA 6's cast from the official credits: Dylan Rourke plays Jason, Manni L. Perez plays Lucia and Lexie Shoaibi plays Mandy. Plus: is Niko Bellic in GTA 6?",
+ chip=OK,
+ answer="According to Rockstar's official credits, Jason Duval is played by Dylan Rourke and Lucia Caminos by Manni L. Perez. The cast also includes Stephen Root (Brian Heder), Bobby Moynihan (Cal) and Lexie Shoaibi (Mandy). Michael Hollick, who played Niko Bellic in GTA IV, is credited as “The Hitman.”",
+ body=f"""<p>Rockstar published GTA 6's full credits on its official site at launch. The same performers handled voice and motion capture, according to Screen Rant.</p>
+<h2>Jason and Lucia</h2>
+<ul>
+<li><strong>Jason Duval: Dylan Rourke.</strong> Screen Rant says it's his video game debut; he's had TV guest spots on <em>Station 19</em>, <em>Modern Family</em> and <em>9-1-1: Lone Star</em>.</li>
+<li><strong>Lucia Caminos: Manni L. Perez.</strong> Not her first GTA: per Screen Rant, she appeared as a clubgoer in GTA V and GTA Online, and has guest-starred on <em>The Blacklist</em>, <em>Jessica Jones</em> and <em>Chicago P.D.</em></li>
+</ul>
+<p>Who they are in the story: <a href="characters.html">Jason and Lucia, the protagonists</a>.</p>
+<h2>Main cast</h2>
+<p>A selection from the official credits, covering characters mentioned on this site:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table (scroll for more)"><table><thead><tr><th>Character</th><th>Actor</th></tr></thead><tbody>{_cast_rows}</tbody></table></div>
+<p>The credits also include music cameos such as Kodak Black, who plays himself.</p>
+<h2>Is Niko Bellic in GTA 6?</h2>
+<p>Not confirmed. What we do know: the official credits list <strong>Michael Hollick</strong>, the actor who played Niko Bellic in GTA IV, in the role of “The Hitman.” Rockstar doesn't say that character is Niko, so we don't assume it. GameSpot also found an in-game memoir by a former Liberty City mobster that references 2008, the year GTA IV is set.</p>
+<h2>What about Mandy?</h2>
+<p>She's played by Lexie Shoaibi. Who she is and whether you can date her: <a href="../questions/mandy.html">Mandy in GTA 6</a>.</p>""",
+ sources=[_CREDITS, ("https://screenrant.com/gta-6-cast-voice-actors/", "Screen Rant: GTA 6 full cast and voice list (Nov 19, 2026)"),
+          ("https://www.gamespot.com/articles/gta-6-easter-eggs-list-and-locations/", "GameSpot: GTA 6 Easter eggs (Nov 18, 2026)")],
+ related=["leonida/characters.html", "questions/mandy.html", "questions/endings-choices.html"]))
+
+ARTICULOS.append(dict(es="preguntas/mandy.html", en="questions/mandy.html",
+ title="Who Is Mandy in GTA 6? Can You Romance Her?",
+ h1="Who is Mandy in GTA 6, and can you romance her?",
+ desc="Mandy is Brian's tenant in Key Lento whom Jason meets in the Pipework mission. You can't romance her. Who plays her and what's known about her.",
+ chip=OK,
+ answer="Mandy is one of Brian Heder's tenants in Key Lento: Jason meets her in “Pipework,” a Chapter 1 mission where he collects her rent. She flirts with Jason, but you can't romance her. She's played by Lexie Shoaibi.",
+ body="""<h2>Who she is</h2>
+<p>She's one of Brian Heder's tenants in Key Lento, in the Leonida Keys. Jason meets her in “Pipework,” a Chapter 1 mission where Brian sends him to collect overdue rent and he ends up fixing her pipes, according to GTABase and GameSpot. The official credits list Lexie Shoaibi as Mandy.</p>
+<h2>Can you romance Mandy?</h2>
+<p>No. According to GameSpot, Mandy flirts with Jason throughout the mission, but the dialogue never lets you steer things toward romance, and at the end Jason leaves without the player getting a choice. You can drop by her house later and pick things back up, but that doesn't make her a romance option.</p>
+<p>The game's only relationship is Jason and Lucia's, and Rockstar has said it's optional: if you want it to work, you have to nurture it. More in <a href="endings-choices.html">endings and choices</a>.</p>
+<h2>Is Mandy a serial killer?</h2>
+<p>That's a player theory based on items in her home and car. It isn't confirmed. GameSpot mentions Jason pulls a “curious item” out of her pipes, but nothing more.</p>""",
+ sources=[("https://www.gamespot.com/articles/can-you-romance-mandy-in-gta-6/", "GameSpot: Can you romance Mandy in GTA 6? (Nov 18, 2026)"),
+          ("https://www.gtabase.com/gta-6/missions/", "GTABase: GTA 6 missions list (Pipework)"), _CREDITS,
+          ("https://www.techradar.com/gaming/rockstar-says-if-you-want-gta-6s-romance-between-jason-and-lucia-to-flourish-you-have-to-nurture-it-but-its-completely-optional-its-not-something-that-we-want-to-foist-upon-players", "TechRadar: Rockstar says Jason and Lucia's romance is optional"),
+          ("https://beebom.com/gta-6-mandy-serial-killer/", "Beebom: the Mandy serial killer theory")],
+ related=["leonida/voice-actors-cast.html", "questions/fix-jasons-house.html", "questions/endings-choices.html"]))
+
+ARTICULOS.append(dict(es="preguntas/arreglos-casa-jason.html", en="questions/fix-jasons-house.html",
+ title="How to Fix the Railing in GTA 6: All 4 Jason's House Projects",
+ h1="How to fix the railing and Jason's house in GTA 6",
+ desc="All four Jason's house projects in GTA 6 (steps, roof, railing and wall), where to find them, and why you must finish them before picking up Lucia.",
+ chip=OK,
+ answer="There are four projects at Jason's Key Lento house: the steps, the roof, the railing and the bedroom wall. Do them before you pick up Lucia, because you can't finish them afterward. The railing is behind the house, by the outdoor gym.",
+ body="""<p>Early in the story, Jason lives in a waterfront house in Key Lento that Brian Heder lends him. It's a fixer-upper, and you have limited time to fix it up before Lucia gets out and moves in, according to GameSpot. Finishing the projects makes Lucia happier and strengthens their relationship.</p>
+<h2>The four projects</h2>
+<ol>
+<li><strong>Steps:</strong> next to the stairs closest to the mailbox and driveway are some 2x4s; interact with them (Triangle / Y).</li>
+<li><strong>Leaky roof:</strong> climb the yellow ladder on the front porch and interact with the shingles.</li>
+<li><strong>Railing:</strong> the hardest to find. Go out the back door and down to the outdoor gym; facing the house, you'll see a gap in the railing next to a ladder. Interact with the gap.</li>
+<li><strong>Wall:</strong> in the bedroom, the wall opposite the bed is half-built. Interact with the wood frame: Jason hangs drywall and paints it, and you pick the color.</li>
+</ol>
+<p class="note">Important: once you decide to go pick up Lucia, you can't come back to these projects.</p>
+<h2>Other tasks before Lucia arrives</h2>
+<p>GTABase and GameSpot list more optional Chapter 1 tasks: picking up groceries, buying flowers, buying Lucia a necklace, collecting her clothes from her friend Andy and getting a haircut. Push Square adds that Lucia reacts differently depending on whether the house was ready in time.</p>
+<p>To be safe, save to another slot first: <a href="how-to-save.html">how to save</a>. Full list in <a href="chapter-1-missions.html">GTA 6 missions</a>.</p>""",
+ sources=[("https://www.gamespot.com/articles/how-to-fix-all-projects-at-jasons-house-in-gta-6/", "GameSpot: How to fix all projects at Jason's house in GTA 6 (Nov 18, 2026)"),
+          ("https://www.gtabase.com/gta-6/missions/", "GTABase: Chapter 1 missions (Feng Shui and optional tasks)"),
+          (PSQ, "Push Square: Grand Theft Auto 6 review")],
+ related=["questions/chapter-1-missions.html", "questions/mandy.html", "questions/endings-choices.html"]))
+
+ARTICULOS.append(dict(es="dinero/codigos-cajas-fuertes.html", en="money/safe-codes.html",
+ title="GTA 6 Safe Codes: Why Online Lists Don't Work",
+ h1="GTA 6 safe codes: why online lists don't work",
+ desc="GTA 6 safe codes are randomized: they change every playthrough and every robbery. How to find yours, including at Brooks Boatworks and Kingpin Bowling.",
+ chip=ONE,
+ answer="No list will work: according to GameSpot, GTA 6 safe codes are randomized, changing every playthrough and even if you rob the same store twice. The code is on a guard or somewhere nearby, and smaller safes can be picked.",
+ body="""<h2>How to find the code</h2>
+<ul>
+<li>Some safes need a code. According to GameSpot, a guard usually carries it or it's written down nearby; Focus mode (click both sticks) helps you spot it.</li>
+<li>If you can't find it, smaller safes can be picked and lockboxes snapped open.</li>
+<li>Most safes can be forced open, but that usually trips the alarm.</li>
+</ul>
+<h2>What about Brooks Boatworks or Kingpin Bowling?</h2>
+<p>They're among the most searched safe codes right now. GameSpot doesn't mention any exceptions to codes being randomized, so a code you find online probably won't match your game: search the location itself.</p>
+<h2>Before you open the safe</h2>
+<p>Handle the crowd, disable the alarm and destroy the camera footage first. Every step is in <a href="make-money.html">how to rob a store without tripping the alarm</a>.</p>
+<p>Safe codes aren't cheats: <a href="../questions/cheats.html">GTA 6 cheats</a> are entered on the phone and only work after the story.</p>""",
+ sources=[("https://www.gamespot.com/articles/gta-6-safe-codes-and-robberies-guide/", "GameSpot: GTA 6 safe codes and robberies guide (Nov 18, 2026)")],
+ related=["money/make-money.html", "questions/cheats.html", "money/buckme-bank.html"]))
+
+# Títulos alineados con lo que se busca
+_A["questions/how-to-save.html"].update(title="Does GTA 6 Autosave? How to Save Your Game (15 Slots)",
+    h1="Does GTA 6 autosave? How to save your game",
+    desc="Yes, GTA 6 autosaves, and it has 15 manual save slots. How to save, when you can't, and why cheats block saving.")
+_A["pc-online/gta-6-pc.html"].update(title="Is GTA 6 on PC or Steam? Release Date and What Take-Two Says",
+    h1="Is GTA 6 on PC? When it's coming to PC and Steam",
+    desc="GTA 6 isn't on PC or Steam and has no PC date. What Take-Two has said, and how long GTA V and Red Dead Redemption 2 took to reach PC.")
+_A["leonida/map-leonida.html"].update(title="GTA 6 Map: Leonida's Regions, Counties and Vice City")
+_A["questions/chapter-1-missions.html"].update(title="GTA 6 Missions List: How Many Chapters and Every Mission")
+_A["pc-online/price-editions.html"].update(title="How Much Is GTA 6? Standard $79.99 vs Ultimate $99.99")
+
+_ps = _A["issues/ps5-pro-vs-ps5-vs-xbox.html"]
+_ps["body"] = _ps["body"].replace("<h2>Is a PS5 Pro worth it just for this?</h2>", """<h2>Why does GTA 6 look blurry?</h2>
+<p>Internal resolution. Per Digital Foundry's analysis, the game renders internally at 1440p on PS5 and upscales, while Series S starts from 720p to reach 1080p, so it can look softer than on PS5 Pro, which upscales with PSSR. No in-game setting changes that, since every console runs at 30fps.</p>
+<h2>Is a PS5 Pro worth it just for this?</h2>""", 1)
+_x = _A["issues/ps4-xbox-one.html"]
+_x["body"] = _x["body"] + """
+<h2>What about Nintendo Switch 2, Steam or Game Pass?</h2>
+<p>Rockstar has only released GTA 6 on PS5 and Xbox Series X|S. There's no Nintendo Switch 2 or PC version, so it isn't on Steam either (more in <a href="../pc-online/gta-6-pc.html">GTA 6 on PC</a>). Rockstar hasn't announced GTA 6 for Game Pass.</p>"""
+_c = _A["leonida/characters.html"]
+_c["body"] = _c["body"].replace("<h2>Other official characters</h2>", """<h2>Who voices them</h2>
+<p>According to the official credits, Jason is played by Dylan Rourke and Lucia by Manni L. Perez. The full cast is in <a href="voice-actors-cast.html">GTA 6 voice actors and cast</a>.</p>
+<h2>Other official characters</h2>""", 1)
+_c["sources"] = _c["sources"] + [_CREDITS]
+
 # Páginas que no son artículos: equivalencias para hreflang y el selector.
 OTRAS = {
     "index.html": "en/",

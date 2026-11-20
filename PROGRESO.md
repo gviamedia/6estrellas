@@ -3,6 +3,15 @@
 Estado a 20/11/2026. Todo lo descrito como "hecho" está publicado en `main` y comprobado en vivo.
 
 ## Hecho
+- **SEO con búsquedas reales (20/11/2026, noche), en los dos idiomas.**
+  - **Fuentes de datos:** Google Trends «Tendencias del momento», categoría Juegos, últimas 48 h (España y EE. UU.); la página de exploración de Trends devolvió error 429. Además, el autocompletado de Google: 804 sugerencias en español y 1183 en inglés.
+  - **Lo más buscado (volumen de Trends):** EE. UU.: «gta 6» 200K+, «is niko bellic in gta 6» 100K+, «gta 6 mandy», «does gta 6 auto save», «is gta 6 on pc», «gta 6 map», «gta+» y «playstation network» 50K+ cada una, «jason/lucia gta 6», «how long to beat» y «fix railing gta 6» 20K+, «gta 6 cheats» 10K+, códigos de cajas fuertes («brooks boatworks», «kingpin bowling») 2K+. España: «grand theft auto gta vi» 50K+, «gta vi pc», «trucos gta 6» y «mandy gta 6» 5K+, «lucia gta 6», «tacón gta 6» y «gta 6 ps4/psn» 2K+, «cuántos capítulos tiene gta 6» y «ultimate edition» 200+. Autocompletado: autoguardado, actores, «niko bellic», «se ve borroso / hdr», «game pass», «switch 2», «steam», «standard vs ultimate».
+  - **Páginas nuevas:** actores y reparto (`lugares/personajes-actores` / `leonida/voice-actors-cast`, con los créditos oficiales de Rockstar y la respuesta sobre Niko Bellic: Michael Hollick aparece como «The Hitman», sin confirmar que sea Niko), Mandy (`preguntas/mandy` / `questions/mandy`), arreglos de la casa de Jason con la barandilla (`preguntas/arreglos-casa-jason` / `questions/fix-jasons-house`) y códigos de cajas fuertes (`dinero/codigos-cajas-fuertes` / `money/safe-codes`).
+  - **Títulos, H1 y descripciones alineados con la búsqueda exacta:** autoguardado, «¿sale en PC o Steam?», «cuántos capítulos tiene», «¿cuánto cuesta?», mapa y portada («GTA 6: trucos, guías y respuestas cortas»).
+  - **Apartados nuevos:** «¿Por qué se ve borroso?» (resolución interna según Digital Foundry), «¿Y en Switch 2, Steam o Game Pass?», «Quién les pone voz» y «La escena del tacón» (Digital Trends, una sola fuente).
+  - **IndexNow:** clave en la raíz (`<clave>.txt`) y `herramientas/indexnow.py`, que envía las URLs del sitemap a Bing, Yandex y Seznam. Google no usa IndexNow: hace falta dar de alta Search Console (decisión del dueño, sin acceso desde aquí).
+  - **Anuncios:** el servidor de Adsterra responde con el código del anuncio (200, 59 KB) y el hueco se pinta tras el consentimiento (comprobado con el panel visible). Ingresos y tasa de relleno solo se ven en el panel de Adsterra.
+  - Scripts: `herramientas/actualizar_seo.py` (español) y el bloque «SEO 20/11/2026» de `herramientas/paginas_en.py`.
 - **Actualización con lo publicado en los dos primeros días (20/11/2026, tarde), en los dos idiomas.** Búsqueda en guías, prensa y lo que la prensa recoge de foros y YouTube. Solo se publica con fuente; lo de una sola fuente o de jugadores va marcado.
   - `trucos` / `cheats`: los **61 trucos** con su requisito de desbloqueo y los **19 códigos** conocidos. 17 coinciden en PowerPyx, Red Bull y Vandal; «Subir el nivel de búsqueda» está en dos fuentes y «Borrachera» en una sola, y así se marca. Avisos: no hay trucos por número de teléfono (Red Bull) y los códigos de cajas fuertes son aleatorios (GameSpot). Datos en `herramientas/trucos_datos.py`; en móvil, cada truco es una ficha (nombre, código, requisito).
   - Página nueva `preguntas/secretos-easter-eggs.html` / `en/questions/secrets-easter-eggs.html`: abducción alienígena con trofeo y su continuación (GameSpot y The Tab), el huevo de la torre más alta de Vice City (GameSpot y GamingBible), Bigfoot, el piso de Dexter, guiños a Red Dead y Liberty City, The Vault Radio. El perro socorrista y el barco de Michael van en «Sin confirmar».
@@ -68,6 +77,7 @@ Fuentes abiertas y leídas (GamesRadar y PC Gamer, que no se leen sin JavaScript
 3. Cuando se toque una página en español, actualizar también su equivalente en `herramientas/paginas_en.py` (y al revés).
 
 ## Cómo mantenerlo
+- Tras publicar páginas nuevas o cambios importantes: `python herramientas/indexnow.py` (con el archivo de clave ya en vivo).
 - Cambio de contenido en español: editar el HTML, commit, `python herramientas/mantenimiento.py todo`, commit «Fechas: …», push.
 - Cambio de contenido en inglés: editar `herramientas/paginas_en.py`, `python herramientas/generar_en.py`, commit, `mantenimiento.py todo`, commit «Fechas: …», push.
 - Cambio de plantilla (cabecera, menú, pie, aviso, versiones `?v=`): editar `herramientas/sitio.py`, ejecutar `generar_en.py` y `rediseno.py`, commit con mensaje que empiece por «Diseño:».

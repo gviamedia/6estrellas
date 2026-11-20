@@ -308,3 +308,15 @@ IMAGENES["pantano-noche"] = ("shots", "Places/Grassrivers/Grassrivers_08.jpg",
     "Unas personas en una barca cruzan de noche un pantano de Grassrivers bajo la luna, con un caimán en primer plano",
     "People on a boat cross a Grassrivers swamp at night under the moon, with a gator in the foreground")
 PAGINAS["preguntas/secretos-easter-eggs.html"] = "pantano-noche"
+
+# SEO 20/11: páginas nuevas
+IMAGENES["keys-calle"] = ("shots", "Places/Leonida Keys/Leonida_Keys_02.jpg",
+    "Una calle de los Leonida Keys con una mujer en un patinete eléctrico, peatones y una iguana en la acera",
+    "A Leonida Keys street with a woman on a mobility scooter, pedestrians and an iguana on the sidewalk")
+IMAGENES["reparto"] = ("shots", "People/Jason and Lucia/Jason_and_Lucia_07.jpg",
+    "Lucia y Jason, armados, vistos desde abajo bajo una luz de neón",
+    "Lucia and Jason, both armed, seen from below under neon light")
+PAGINAS["lugares/personajes-actores.html"] = "reparto"
+PAGINAS["preguntas/mandy.html"] = "keys-calle"
+PAGINAS["preguntas/arreglos-casa-jason.html"] = "casa-pilotes"
+PAGINAS["dinero/codigos-cajas-fuertes.html"] = "jason-lucia-camara"

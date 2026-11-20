@@ -205,13 +205,13 @@ def portada():
         bloques.append(f'<section class="sec-block" aria-labelledby="h-{sec}"><div class="sec-head"><h2 id="h-{sec}"><a href="{sec}/">{d["name"]}</a></h2><a class="more" href="{sec}/">{mas}</a></div><ul class="list">{lis}</ul></section>')
     tops = "".join(f'<li><a href="{u}">{t}</a></li>' for u, t in TOPS)
     site = {"@context": "https://schema.org", "@type": "WebSite", "name": "Six Stars", "url": url(""), "inLanguage": "en", "publisher": PUBLISHER}
-    html = head(en_rel, "GTA 6 Answers: Quick, Sourced Guides | Six Stars",
+    html = head(en_rel, "GTA 6 Cheats, Guides and Answers | Six Stars",
                 "Quick, sourced answers to the GTA 6 questions players are asking: missions, saving, cheats, money, PC, online, fixes and the map of Leonida.",
                 otype="website", ld=[site]) + chrome(en_rel, None) + f'''
 <main id="main">
 <div class="wrap">
 <section class="hero">
-<h1 class="tagline">Straight answers about GTA 6</h1>
+<h1 class="tagline">GTA 6 cheats, guides and quick answers</h1>
 <p class="lead">Every answer links its sources and shows when we last checked it. PS5 and Xbox Series · reviewed November 20, 2026.</p>
 </section>
 <div class="lead-story">

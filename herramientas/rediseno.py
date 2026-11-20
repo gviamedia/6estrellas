@@ -79,7 +79,7 @@ def portada():
     return f'''<main id="main">
 <div class="wrap">
 <section class="hero">
-<h1 class="tagline">Respuestas cortas sobre GTA 6</h1>
+<h1 class="tagline">GTA 6: trucos, guías y respuestas cortas</h1>
 <p class="lead">Con fuente enlazada y fecha de revisión. PS5 y Xbox Series · revisado el 20 de noviembre de 2026.</p>
 </section>
 <div class="lead-story">
