@@ -1,3 +1,6 @@
 # Material interno: no debe publicarse en GitHub Pages
 auditoria/
 docs.json
+
+# Configuración local de herramientas
+.claude/

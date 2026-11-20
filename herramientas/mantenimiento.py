@@ -8,7 +8,8 @@ Uso, desde la raíz del repositorio:
   python herramientas/mantenimiento.py todo
 
 Notas:
-- "fechas" ignora los commits cuyo mensaje empieza por "Fechas:" para no entrar en bucle.
+- "fechas" ignora los commits cuyo mensaje empieza por "Fechas:" (para no entrar en bucle) o por
+  "Diseño:" (cambios de plantilla que no tocan el contenido).
   Haz primero el commit del contenido y después ejecuta "fechas" y commitea con "Fechas: ...".
 - datePublished no se toca nunca.
 """
@@ -57,7 +58,7 @@ def indice():
 
 
 def ultimo_cambio(rel):
-    r = subprocess.run(["git", "log", "-1", "--format=%aI", "--invert-grep", "--grep=^Fechas:", "--", rel],
+    r = subprocess.run(["git", "log", "-1", "--format=%aI", "--invert-grep", "--grep=^Fechas:", "--grep=^Diseño:", "--", rel],
                        cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
     return r.stdout.strip()
 

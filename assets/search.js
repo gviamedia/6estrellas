@@ -1,4 +1,4 @@
-/* 6 Estrellas: buscador interno. Sin dependencias, sin cookies, sin enviar nada a ningún servidor.
+/* 6 Estrellas / Six Stars: buscador interno. Sin dependencias, sin cookies, sin enviar nada a ningún servidor.
    Carga assets/search-index.json (generado por herramientas/mantenimiento.py) y filtra en el navegador. */
 (function () {
   "use strict";
@@ -14,8 +14,22 @@
     codigos: ["trucos"], policia: ["wanted", "estrellas", "busqueda"], trofeos: ["logros", "platino"],
     logros: ["trofeos"], online: ["multijugador", "multiplayer"], multijugador: ["online"],
     errores: ["fallo", "problema", "bug"], problema: ["errores", "fallo"], precio: ["cuesta", "costo", "coste"],
-    descargar: ["descarga", "instalar", "peso", "tamano", "gb"], tamano: ["peso", "gb", "ocupa"]
+    descargar: ["descarga", "instalar", "peso", "tamano", "gb"], tamano: ["peso", "gb", "ocupa"],
+    // Inglés (EE. UU.)
+    car: ["cars", "vehicle", "vehicles", "ride"], cars: ["car", "vehicle"], vehicle: ["car"], money: ["cash", "bank"], cash: ["money"],
+    cheats: ["cheat", "codes", "code"], codes: ["cheats"], cops: ["police", "wanted"], police: ["cops", "wanted"], wanted: ["police", "cops"],
+    trophies: ["achievements", "platinum"], achievements: ["trophies"], multiplayer: ["online", "coop", "co"], coop: ["co", "multiplayer"],
+    size: ["download", "gb", "storage"], download: ["size", "install", "gb"], crash: ["error", "errors", "fix", "loading"],
+    error: ["errors", "fix", "crash"], fix: ["error", "crash", "problem"], price: ["cost", "costs", "edition"], cost: ["price"],
+    computer: ["pc"], save: ["saving", "slots"], length: ["long", "hours"], long: ["length", "hours"]
   };
+  var EN = document.documentElement.lang === "en";
+  var M = EN ? { none: function (q) { return "No results for “" + q + "”. Try another word or browse the sections in the menu."; },
+                 count: function (n, q) { return n + (n === 1 ? " result" : " results") + " for “" + q + "”"; },
+                 busy: "Searching…", fail: "The search could not load. Try again or use the menu." }
+             : { none: function (q) { return "No hay resultados para «" + q + "». Prueba con otra palabra o mira las secciones del menú."; },
+                 count: function (n, q) { return n + (n === 1 ? " resultado" : " resultados") + " para «" + q + "»"; },
+                 busy: "Buscando…", fail: "No se pudo cargar el buscador. Inténtalo de nuevo o usa el menú." };
   var data = null, loading = null;
 
   function norm(s) {
@@ -25,7 +39,7 @@
   function load() {
     if (data) return Promise.resolve(data);
     if (!loading) {
-      loading = fetch("assets/search-index.json").then(function (r) { return r.json(); }).then(function (j) {
+      loading = fetch(form.getAttribute("data-index") || "assets/search-index.json").then(function (r) { return r.json(); }).then(function (j) {
         data = j.map(function (x) { x._t = norm(x.t); x._r = norm(x.r + " " + x.d); x._c = norm(x.c); return x; });
         return data;
       });
@@ -51,20 +65,20 @@
   function render(items, q) {
     if (!items.length) {
       out.innerHTML = "";
-      status.textContent = "No hay resultados para «" + q + "». Prueba con otra palabra o mira las secciones del menú.";
+      status.textContent = M.none(q);
       return;
     }
-    status.textContent = items.length + (items.length === 1 ? " resultado" : " resultados") + " para «" + q + "»";
+    status.textContent = M.count(items.length, q);
     out.innerHTML = items.slice(0, 20).map(function (x) {
-      return '<li class="result"><a href="' + esc(x.u) + '"><span class="card-t">' + esc(x.t) + '</span>' +
-             '<span class="card-d">' + esc(x.r.length > 170 ? x.r.slice(0, 167) + "…" : x.r) + '</span>' +
+      return '<li class="item result"><a href="' + esc(x.u) + '"><span class="item-t">' + esc(x.t) + '</span>' +
+             '<span class="item-d">' + esc(x.r.length > 170 ? x.r.slice(0, 167) + "…" : x.r) + '</span>' +
              '<span class="result-s">' + esc(x.s) + '</span></a></li>';
     }).join("");
   }
   function run() {
     var q = input.value.trim(), n = norm(q);
     if (n.length < 2) { out.innerHTML = ""; status.textContent = ""; return; }
-    status.textContent = "Buscando…";
+    status.textContent = M.busy;
     load().then(function (d) {
       var tokens = n.split(" ").filter(function (t) { return t.length > 1; });
       var res = d.map(function (x) { return { x: x, s: score(x, tokens) }; })
@@ -72,7 +86,7 @@
                  .sort(function (a, b) { return b.s - a.s; })
                  .map(function (r) { return r.x; });
       render(res, q);
-    }).catch(function () { status.textContent = "No se pudo cargar el buscador. Inténtalo de nuevo o usa el menú."; });
+    }).catch(function () { status.textContent = M.fail; });
   }
   var timer;
   input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(run, 120); });

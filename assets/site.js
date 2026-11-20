@@ -1,10 +1,12 @@
-/* 6 Estrellas: consentimiento de cookies y formulario de correo. Sin dependencias.
+/* 6 Estrellas / Six Stars: consentimiento de cookies y huecos de anuncio. Sin dependencias.
    IMPORTANTE: si añades un proveedor nuevo (anuncios, estadísticas), sube CONSENT_VERSION
    para que todo el mundo vuelva a ver el aviso. Para AdSense en el EEE hace falta además
    una CMP certificada por Google (TCF v2.2); este banner no la sustituye. */
 (function () {
   "use strict";
   var KEY = "seisestrellas_consent", CONSENT_VERSION = 3, MAX_AGE = 365 * 24 * 3600 * 1000;
+  // Texto del anuncio propio que se muestra cuando no hay consentimiento (o el anuncio no carga).
+  var HOUSE = document.documentElement.lang === "en" ? "Free GTA 6 beginner's guide →" : "Guía de inicio gratis de GTA 6 →";
 
   function read() {
     try {
@@ -50,7 +52,7 @@
       if (a.dataset.done) return;
       var box = a.querySelector(".ad-box");
       if (!c.ads || !a.dataset.ad || !a.dataset.src) {
-        if (!box.firstChild) box.innerHTML = '<a class="ad-house" href="' + a.dataset.house + '">Guía de inicio gratis de GTA 6 →</a>';
+        if (!box.firstChild) box.innerHTML = '<a class="ad-house" href="' + a.dataset.house + '">' + HOUSE + '</a>';
         return;
       }
       function load() {
@@ -62,7 +64,7 @@
           var s = document.createElement("script");
           s.src = a.dataset.src; s.async = false; s.setAttribute("data-cfasync", "false");
           var house = function () {
-            if (!box.querySelector("iframe, ins, a, img")) box.insertAdjacentHTML("beforeend", '<a class="ad-house" href="' + a.dataset.house + '">Guía de inicio gratis de GTA 6 →</a>');
+            if (!box.querySelector("iframe, ins, a, img")) box.insertAdjacentHTML("beforeend", '<a class="ad-house" href="' + a.dataset.house + '">' + HOUSE + '</a>');
           };
           s.onload = function () { setTimeout(function () { house(); next(); }, 3000); };
           s.onerror = function () { house(); setTimeout(next, 300); };
@@ -130,30 +132,4 @@
     b.addEventListener("click", function () { open(true, b); });
   });
 
-  /* Formulario de correo. Para activarlo con Brevo: crea el formulario en Brevo con doble
-     opt-in y pon su URL de acción en BREVO_ACTION al ejecutar build.py. */
-  document.querySelectorAll(".email-form").forEach(function (f) {
-    var msg = f.querySelector(".form-msg"), mail = f.querySelector('input[type="email"]'), ok = f.querySelector('input[name="OPT_IN"]'), age = f.querySelector('input[name="AGE_OK"]');
-    function err(el, t) {
-      msg.textContent = t; msg.classList.add("is-error");
-      el.setAttribute("aria-invalid", "true"); el.setAttribute("aria-describedby", msg.id); el.focus();
-    }
-    function clear(el) { el.removeAttribute("aria-invalid"); msg.classList.remove("is-error"); }
-    mail.addEventListener("input", function () { clear(mail); });
-    ok.addEventListener("change", function () { clear(ok); });
-    if (age) age.addEventListener("change", function () { clear(age); });
-    f.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!mail.value.trim()) return err(mail, "Escribe tu correo.");
-      if (!mail.checkValidity()) return err(mail, "Al correo le falta algo (ej.: nombre@gmail.com).");
-      if (!ok.checked) return err(ok, "Marca la casilla para recibir la guía.");
-      if (age && !age.checked) return err(age, "Confirma que tienes 18 años o más.");
-      msg.classList.remove("is-error");
-      var action = f.getAttribute("data-brevo-action");
-      if (!action) { msg.textContent = "La suscripción todavía no está activa. Mientras tanto, puedes leer la guía en la página Guía gratis."; return; }
-      fetch(action, { method: "POST", body: new FormData(f), mode: "no-cors" })
-        .then(function () { msg.textContent = "Listo. Revisa tu correo para confirmar la suscripción."; f.reset(); })
-        .catch(function () { msg.classList.add("is-error"); msg.textContent = "No se pudo enviar. Comprueba tu conexión e inténtalo de nuevo."; });
-    });
-  });
 })();

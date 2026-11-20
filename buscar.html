@@ -17,11 +17,11 @@
 <meta property="og:image" content="https://6estrellas.org/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="675">
+<meta name="theme-color" content="#f6f3ed">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0d5c63">
-<meta name="theme-color" content="#152428" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="preload" href="assets/fonts/oswald-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v=6">
 
 </head>
 <body>
@@ -39,12 +39,10 @@
 <button type="button" class="btn" data-consent="accept">Aceptar</button>
 <button type="button" class="btn" data-consent="save" hidden>Guardar</button>
 </div></div></div>
-<header class="site-header"><div class="wrap hdr">
-<a class="brand" href="./"><span class="mark" aria-hidden="true"></span>6 Estrellas</a>
-<nav aria-label="Secciones"><ul>
-<li><a href="preguntas/">Preguntas</a></li><li><a href="dinero/">Dinero y vehículos</a></li><li><a href="problemas/">Problemas técnicos</a></li><li><a href="novedades/">PC y Online</a></li><li><a href="lugares/">Leonida</a></li>
-<li><a href="buscar.html">Buscar</a></li>
-<li><a class="nav-cta" href="guia-inicio.html">Guía gratis</a></li>
+<header class="site-header"><div class="wrap">
+<div class="masthead"><a class="brand" href="./">6 Estrellas</a></div>
+<nav class="sections" aria-label="Secciones"><ul>
+<li><a href="preguntas/">Preguntas</a></li><li><a href="dinero/">Dinero</a></li><li><a href="problemas/">Problemas</a></li><li><a href="novedades/">PC y Online</a></li><li><a href="lugares/">Leonida</a></li><li><a href="buscar.html" aria-current="page">Buscar</a></li><li><a href="guia-inicio.html">Guía gratis</a></li>
 </ul></nav>
 </div></header>
 <main id="main" class="wrap narrow"><h1>Buscar en 6 Estrellas</h1>
@@ -54,10 +52,11 @@
 <button type="submit" class="btn btn-primary">Buscar</button>
 </form>
 <p id="search-status" class="small" role="status" aria-live="polite"></p>
-<ul id="search-results" class="cards"></ul>
+<ul id="search-results" class="list"></ul>
 <noscript><p>El buscador necesita JavaScript. Mientras tanto, usa las secciones del menú: <a href="preguntas/">Preguntas</a>, <a href="dinero/">Dinero y vehículos</a>, <a href="problemas/">Problemas técnicos</a>, <a href="novedades/">PC y Online</a> y <a href="lugares/">Leonida</a>.</p></noscript>
 </main>
 <footer class="site-footer"><div class="wrap">
+<a class="brand" href="./">6 Estrellas</a>
 <p class="disclaimer"><strong>Web no oficial.</strong> 6 Estrellas es una web independiente de aficionados. No está afiliada, patrocinada ni respaldada por Rockstar Games ni Take-Two Interactive. Grand Theft Auto, GTA y los nombres relacionados son marcas de sus respectivos propietarios y se citan solo para identificar el juego.</p>
 <ul class="foot-links">
 <li><a href="sobre.html">Quiénes somos y cómo trabajamos</a></li>
@@ -66,8 +65,8 @@
 <li><a href="cookies.html">Política de cookies</a></li>
 <li><button type="button" class="linklike" data-open-consent>Configurar cookies</button></li>
 </ul>
-<p class="small">Última revisión general: 19 de noviembre de 2026.</p>
+<p class="small">Última revisión general: 20 de noviembre de 2026.</p>
 </div></footer>
-<script src="assets/site.js?v=7" defer></script>
-<script src="assets/search.js?v=2" defer></script>
+<script src="assets/site.js?v=8" defer></script>
+<script src="assets/search.js?v=3" defer></script>
 </body></html>

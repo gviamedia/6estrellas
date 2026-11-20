@@ -54,6 +54,7 @@ def archivo_de(url):
     return ROOT / r
 
 
+HAY_EN = (ROOT / "en").is_dir()
 hreflangs = {}
 noindex = set()
 versiones = {}
@@ -103,13 +104,13 @@ for p in paginas():
     hl = dict(re.findall(r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"', s))
     if hl:
         hreflangs[url] = hl
-    elif p.name != "404.html" and not es_noindex:
+    elif HAY_EN and p.name != "404.html" and not es_noindex:
         err(f"{nombre}: sin hreflang")
     for m in re.finditer(r'(?:href|src)="([^"#?]+)(?:[?#][^"]*)?"', s):
         h = m.group(1)
         if re.match(r"^(https?:|mailto:|data:|//)", h):
             continue
-        dest = (p.parent / h).resolve()
+        dest = (ROOT / h.lstrip("/")).resolve() if h.startswith("/") else (p.parent / h).resolve()
         if h.endswith("/"):
             dest = dest / "index.html"
         if not dest.exists():
@@ -130,7 +131,7 @@ for p in paginas():
             versiones.setdefault(a, set()).add(v.group(1))
     # Selector de idioma: debe apuntar a la página equivalente.
     sel = re.search(r'<a class="lang-switch"[^>]*href="([^"]+)"', s)
-    if hl and not sel:
+    if HAY_EN and hl and not sel:
         err(f"{nombre}: sin selector de idioma")
 
 for a, vs in versiones.items():
