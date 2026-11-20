@@ -3,6 +3,8 @@
 Estado a 20/11/2026. Todo lo descrito como "hecho" está publicado en `main` y comprobado en vivo.
 
 ## Hecho
+- **Rediseño (20/11/2026, publicado y comprobado en vivo en móvil y escritorio):** estilo de revista. Papel claro `#f6f3ed`, tinta `#121110`, un solo acento magenta `#d1006a` (contraste 4,7:1) solo en filetes, números, etiquetas y enlace activo. Oswald (titulares) y Source Serif 4 (cuerpo) alojadas en `assets/fonts/` con su licencia OFL; sin Google Fonts. Logo tipográfico, portada con pieza destacada + «Lo más consultado» + listas numeradas por sección, índices como listas de periódico con entradillas completas, respuesta corta con filete, fuentes numeradas, anuncio integrado y etiquetado. Sin modo oscuro, degradados, sombras ni esquinas redondeadas. Plantilla común en `herramientas/sitio.py`; `herramientas/rediseno.py` la aplica a las páginas en español (idempotente). Comprobado a 375 px sin desplazamiento horizontal; en producción, cero peticiones a Adsterra antes de aceptar.
+- **Revisión independiente de contenido (20/11/2026):** ver «Correcciones de la revisión» más abajo.
 - **Lote 1:** `.gitignore`, formularios de email retirados, un solo anuncio por artículo, banner de cookies compacto y accesible, texto de cookies acorde al código.
 - **Lote 2:** ficha «Redacción 6 Estrellas» en `sobre.html` (contacto `contacto@6estrellas.org`), firma en cada artículo, etiquetas de certeza sin «probado», correcciones de contenido, guía PDF huérfana retirada.
 - **Lote 3:** enlaces internos a páginas poco enlazadas, H1 de la policía alineado con la consulta, atribución del mapa.
