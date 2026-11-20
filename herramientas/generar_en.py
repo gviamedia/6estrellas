@@ -402,8 +402,10 @@ def pagina_404():
 def sitemap(urls):
     sm = ROOT / "sitemap.xml"
     s = sm.read_text(encoding="utf-8")
+    # Conserva el lastmod que ya tuviera cada URL (lo mantiene mantenimiento.py fechas).
+    previas = dict(re.findall(r'<url><loc>(https://6estrellas\.org/en/[^<]*)</loc><lastmod>([^<]*)</lastmod></url>', s))
     s = re.sub(r'  <url><loc>https://6estrellas\.org/en/[^<]*</loc><lastmod>[^<]*</lastmod></url>\n', "", s)
-    nuevas = "".join(f'  <url><loc>{u}</loc><lastmod>{PUB}</lastmod></url>\n' for u in urls)
+    nuevas = "".join(f'  <url><loc>{u}</loc><lastmod>{previas.get(u, PUB)}</lastmod></url>\n' for u in urls)
     s = s.replace("</urlset>", nuevas + "</urlset>")
     sm.write_text(s, encoding="utf-8", newline="")
 
