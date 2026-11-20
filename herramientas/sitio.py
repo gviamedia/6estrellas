@@ -6,7 +6,7 @@ Lo usan herramientas/rediseno.py (páginas en español ya escritas) y herramient
 import html
 
 BASE = "https://6estrellas.org/"
-CSS_V = 11
+CSS_V = 13
 JS_V = 9
 SEARCH_V = 3
 THEME = "#f6f3ed"

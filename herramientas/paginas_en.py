@@ -847,6 +847,152 @@ dict(es="lugares/emisoras-radio.html", en="leonida/radio-stations.html",
  related=["leonida/map-leonida.html", "leonida/characters.html", "pc-online/price-editions.html"]),
 ]
 
+# ---------------------------------------------------------------- actualización 20/11/2026 (tarde)
+import trucos_datos as _T
+
+_A = {a["en"]: a for a in ARTICULOS}
+
+_A["questions/cheats.html"].update(
+ title="GTA 6 Cheats for PS5 and Xbox: All Codes and How to Unlock Them",
+ h1="Does GTA 6 have cheats? All codes and how to unlock them",
+ desc=f"All 61 GTA 6 cheats with their unlock requirements, plus the {_T.CONOCIDOS} codes found so far for PS5 and Xbox: money, infinite ammo, body armor and more.",
+ chip=PART,
+ answer=f"Yes, 61 of them, with the same codes on PS5 and Xbox. They only work after you beat the story and meet each cheat's own requirement. As of November 20, {_T.CONOCIDOS} codes are known; all 61 cheats and their requirements are below.",
+ body=f"""<p>This is the big change from earlier GTA games: cheats aren't available from the start. PowerPyx, Red Bull and Vandal agree that they unlock after you complete the main story and that each one also has its own requirement, listed under Progress &gt; Cheats. Enter a code before that and nothing happens.</p>
+<p>According to Red Bull, the game counts what you've already done during the story, so some cheats may be ready the moment the credits roll. It pays to work on the requirements as you play.</p>
+<h2>How to enter a cheat</h2>
+<ol>
+<li>Press up on the d-pad to pull out your phone.</li>
+<li>Hold L1 and press R1 (on Xbox, hold LB and press RB).</li>
+<li>Enter the cheat's d-pad sequence.</li>
+</ol>
+<p>Codes only use the d-pad, so they're identical on PS5 and Xbox. Several look alike (the ammo cheats share an opening, and vehicle spawns all start with ← ↑ → ↓): one wrong press gets you a different cheat or none.</p>
+<h2>What you give up</h2>
+<ul>
+<li>Trophies and achievements are disabled.</li>
+<li>Saving is disabled until you quit and reload (see <a href="how-to-save.html">how to save</a>). Save before you use them.</li>
+</ul>
+<h2>All 61 cheats and how to unlock each one</h2>
+<p>There are 10 player cheats, 11 combat cheats, 21 vehicle spawns, 3 environment cheats and 16 screen filters. All three guides agree on the requirements; as of November 20, {_T.CONOCIDOS} codes are known. Unless noted, a code appears in all three. “Not found yet” means the requirement is official but nobody has published the sequence.</p>
+{_T.tablas("en")}
+<h2>Watch out for fake lists</h2>
+<ul>
+<li><strong>There are no phone-number cheats.</strong> Red Bull says “GTA 6 cheat phone numbers” lists are GTA V codes with a new label; they don't work in GTA 6.</li>
+<li><strong>Safe combinations aren't cheats and aren't fixed.</strong> GameSpot says they're randomized per playthrough, even if you rob the same store twice, so online “safe code” lists won't help. See how to find them in <a href="../money/make-money.html">how to make money</a>.</li>
+</ul>
+<p>We'll add the missing codes as reliable sources publish them.</p>""",
+ sources=[("https://www.powerpyx.com/gta-6-all-cheats/", "PowerPyx: All GTA 6 cheats (Nov 18, 2026)"),
+          ("https://www.redbull.com/int-en/gta-6-cheat-codes", "Red Bull: GTA 6 cheats, all the codes and how to unlock them (Nov 18, 2026)"),
+          ("https://vandal.elespanol.com/guias/guia-grand-theft-auto-vi-trucos-consejos-y-secretos/trucos", "Vandal (Spanish): GTA 6 cheats (Nov 20, 2026)"),
+          ("https://www.gamespot.com/articles/gta-6-safe-codes-and-robberies-guide/", "GameSpot: GTA 6 safe codes and robberies guide (Nov 18, 2026)")])
+
+_RADIO = [
+ ("Flash FM", "Pop", "Robyn and Alex Consani", True), ("Emotion 98.3", "Soft rock (back from 2002's Vice City)", "—", False),
+ ("Vice City FM", "'80s pop", "“Weird Al” Yankovic and Brigitte Nielsen", False), ("Stockyard FM", "Indie and dance", "PinkPantheress and The Dare", False),
+ ("Dirty South Classics", "Southern rap", "Trick Daddy and Trina", True), ("VCRR", "Modern rap", "JT and DJ Stevie J", False),
+ ("Honey FM", "'90s R&amp;B and soul", "Chilli and T-Boz", False), ("Cocoteo FM", "Modern Latin: reggaeton, dembow, bachata", "Bad Bunny (El Martillo) and RaiNao (La Gata)", True),
+ ("Radio La Ola", "Latin classics", "Gloria and Emilio Estefan", False), ("Radio On-U", "Laid-back rock", "—", False),
+ ("V-Rock", "Classic rock", "Lindsey Buckingham and Michael McDonald", False), ("The Chamber 106.6", "Metal", "Kerry King and Tom Araya", True),
+ ("Back Country Radio", "Country", "Morgan Wallen (MW) and Delta Dawne", True), ("Gloriana Blues Radio", "Blues", "Keith Richards and Buddy Guy", False),
+ ("Leonida Jazz Radio", "'70s jazz fusion", "—", False), ("Symphony FM", "Classical", "Yuja Wang", False),
+ ("Worldwide FM", "World music and jazz (back from GTA V)", "Gilles Peterson", False), ("CircoLoco Records Radio", "Club music", "Seth Troxler and Antonio Carbonaro", False),
+ ("AfroBank FM", "African music", "Burna Boy and Palms Trax", True), ("Kaleidoscope FM", "Covers, global pop, Finnish disco", "Jeremy Irons", False),
+ ("WKTT", "Talk radio (back from GTA IV)", "Stavros Halkias", False), ("The Wipe", "Talk show about Leonida's oddities", "—", False)]
+_rows = "".join(f"<tr><td>{n}{' ★' if o else ''}</td><td>{g}</td><td>{h}</td></tr>" for n, g, h, o in _RADIO)
+_A["leonida/radio-stations.html"].update(
+ title="GTA 6 Radio Stations: All 22 and the Secret Vault Radio",
+ h1="What radio stations are in GTA 6? All 22 and the secret one",
+ desc="GTA 6 has 22 radio stations, according to GameSpot, plus the secret Vault Radio. Genres, hosts and how to unlock the hidden station.",
+ answer="GameSpot counts 22 stations from playing the game, plus a secret one, The Vault Radio. Rockstar officially revealed six: Flash FM, Cocoteo FM, Back Country Radio, AfroBank FM, The Chamber 106.6 and Dirty South Classics.",
+ body=f"""<h2>All 22 stations</h2>
+<p>GameSpot, which has been listening in-game since launch, counts 22 stations, the most in the series, plus a secret one. Stations marked ★ are the six Rockstar officially revealed on October 8, 2026; the rest come from GameSpot, so they rest on a single source.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table (scroll for more)"><table><thead><tr><th>Station</th><th>Style</th><th>Hosts (per GameSpot)</th></tr></thead><tbody>{_rows}</tbody></table></div>
+<h2>The secret station: The Vault Radio</h2>
+<p>According to GameSpot, it unlocks once you reach Vice City: go to The Vault nightclub, roughly in the middle of the city, find a poster with a pink gas mask inside and scan it with your phone. You can then listen to the club's dance and electronic tracks.</p>
+<h2>What Rockstar announced</h2>
+<p>In its October 8 reveal, Rockstar detailed six stations and their hosts, and said GTA 6 adds on-demand podcasts for the first time, playable in vehicles or on foot through earbuds connected to the in-game phone, plus an official album, <em>Grand Theft Auto VI: The Album</em>, with 34 tracks.</p>
+<p>GTABase listed 21 stations before launch without separating confirmed names from leaks; GameSpot's list comes from the released game.</p>""",
+ sources=[("https://www.gamespot.com/articles/all-gta-6-radio-stations-and-songs/", "GameSpot: All GTA 6 radio stations and songs (Nov 19, 2026)"),
+          ("https://www.rockstargames.com/newswire/article/o3982oa93a23k4/the-music-of-grand-theft-auto-vi-in-game-radio-stations", "Rockstar Newswire: The Music of Grand Theft Auto VI, In-Game Radio Stations (Oct 8, 2026)"),
+          ("https://www.gtabase.com/gta-6/radio-stations/", "GTABase: GTA 6 radio stations")])
+
+_m = _A["money/make-money.html"]
+_m["body"] = _m["body"].replace("<h2>Other options</h2>", """<h2>How to rob a store without tripping the alarm</h2>
+<p>Tips from GameSpot's robbery guide:</p>
+<ul>
+<li><strong>Check the map first:</strong> every business has a Low, Medium or High security level. Nearly all have an employee, an alarm and cameras.</li>
+<li><strong>Crowd first, then the alarm:</strong> smashing displays or doors sets it off. Disable it at a white wall panel, usually in a back room; Focus mode (click both sticks) highlights it.</li>
+<li><strong>Cameras:</strong> if you're recorded, find the security room and destroy the footage, or police will identify you when you leave. Or shoot cameras first, ideally with a suppressor.</li>
+<li><strong>Use the back door:</strong> the Snap Gun, unlocked through the story, picks locks without tripping the alarm. Your map shows back entrances while you're inside a building.</li>
+<li><strong>Safes:</strong> codes are randomized every robbery; look for the code on a guard or nearby. Smaller safes can be picked.</li>
+<li><strong>Banks and loan stores:</strong> they pay in marked bills you must sell to a fence, and dye packs explode if you get too far away unless you have a jammer.</li>
+<li><strong>Rob as a pair:</strong> in bigger places, the character you're not controlling handles crowd control.</li>
+</ul>
+<h2>Other options</h2>""", 1)
+_m["sources"] = _m["sources"] + [("https://www.gamespot.com/articles/gta-6-safe-codes-and-robberies-guide/", "GameSpot: GTA 6 safe codes and robberies guide (Nov 18, 2026)")]
+
+_CAPS = [("2", "Paradise Lost", ["What's in the Bag?", "Ambulance Chaser", "Play Nurse", "Overnight Charges", "Just Moved In", "Girls' Trip (optional)", "Moses", "New Look", "How Do I Look?", "Got Pills?", "Daily Driver", "Behind on Payments", "Slam Dunk", "Breakfast Run", "Coffee Break (optional)", "Prepare for Vice City", "Afternoon Delight", "Checking Out"]),
+ ("3", "Tits Ass Drug Money", ["Welcome to Vice City", "Dealer's Choice", "Meet the Heders", "Dubious Provenance", "Mami Knows Best (optional)", "South Leonida Real Estate", "Tyrone", "Here, Kitty Kitty", "Send Money to Lorena", "Encrypted Hard Drive", "Car Service", "Send More Money to Lorena", "Top Billing", "Boobie Time (optional)", "First Impressions", "Caught Slipping", "Crosstown Traffic", "Credit Check", "Steal the Zorrusso for Randy", "Raul's Next Job (optional, missable)", "Sinfrontera National Bank", "Security Expert", "Heist Planning", "Ride or Die", "Company Property", "The Missing Link", "Safe Word", "Cooties", "Bricked Up", "Hidden Charges", "The Cartel Heist"]),
+ ("4", "Vice City, Baby", ["Ocean Beach", "Another Life", "Pool Day", "Company Cars", "Lawyer Up", "It's a Date!", "Party Hard", "Heavy Lifting", "Pay Abe's Fee", "Photo/Shoot (optional)", "Making Gainz", "Blood Sweat and Gear", "Watch It", "Call Nate", "Cash Injections", "Amateur Hour", "Dirty Work", "Nate Will Be in Touch", "Too Much Baggage", "Adventures in Babysitting", "Rafa", "Fresh Evidence", "Power Play", "Child's Play (optional, missable)", "Headliners", "Close Surveillance", "Delivery Method", "Team Building", "Fully Catered", "Heist Plans in Place", "VCIA Takedown", "Tie Up Loose Ends (optional)", "Call Valentina Back", "Sunset", "Starting From Zero"]),
+ ("5", "Top of the World, Ma", ["Bird in the Hand", "Taking Liberties", "VC Baby", "Doggie Bag", "Operation Savage Glory", "Honest Abe", "Unfinished Business", "Pay Abe's Fee", "Protective Custody", "The End of the Road"])]
+_caps = "\n".join(f"<details><summary>Chapter {n}: {nm.replace('&', '&amp;')} ({len(ms)} missions)</summary><ol>" + "".join(f"<li>{x.replace('&', '&amp;')}</li>" for x in ms) + "</ol></details>" for n, nm, ms in _CAPS)
+_c = _A["questions/chapter-1-missions.html"]
+_c.update(title="GTA 6 Missions List by Chapter (Spoiler-Light) and Missables",
+          h1="What are the missions in GTA 6? Full list by chapter and missables",
+          desc="Every GTA 6 mission by chapter, per GTABase, including the four optional missions you can miss. Chapters 2 to 5 are collapsed to avoid spoilers.",
+          answer="The story has a Prologue and five chapters. GTABase numbers 122 missions including optional ones, 27 of them in Chapter 1, from “Gone Fishing” to “Discharge Time.” Four optional missions can be missed: two in Chapter 1, one in Chapter 3 and one in Chapter 4.")
+_c["body"] = _c["body"] + f"""
+<h2>Chapters 2 to 5</h2>
+<p class="note">Contains mission titles from later chapters. Expand a chapter only if you want to see them.</p>
+<p>From GTABase's list, which names each chapter and flags two more optional missions as missable: “Raul's Next Job” (Chapter 3) and “Child's Play” (Chapter 4).</p>
+{_caps}"""
+
+ARTICULOS.append(dict(es="preguntas/secretos-easter-eggs.html", en="questions/secrets-easter-eggs.html",
+ title="GTA 6 Secrets and Easter Eggs Found So Far: Aliens, Bigfoot and More",
+ h1="What secrets and Easter eggs are in GTA 6? Everything found so far",
+ desc="GTA 6 secrets found in the first days: the alien abduction and its trophy, the Easter egg atop Vice City's tallest tower, Bigfoot, Dexter's apartment and more.",
+ chip=PART,
+ answer="In the first two days, players found an alien abduction with its own trophy, a literal Easter egg atop Vice City's tallest tower, Bigfoot, Dexter Morgan's apartment and nods to Red Dead Redemption, among others. Rockstar doesn't confirm secrets: all of this comes from press coverage and players.",
+ body="""<p>Rockstar doesn't confirm secrets, so everything below comes from outlets that checked it or from player videos they reported on. When only one source has it, we say so.</p>
+<h2>Alien abduction (with a trophy)</h2>
+<p>According to GameSpot, which lays out the steps, and The Tab:</p>
+<ol>
+<li>Finish Chapter 1.</li>
+<li>Alone and after 2 a.m. in-game, head northwest of the Starlet Motel in Kelly County (near Port Gellhorn).</li>
+<li>Look for a stranded car with flashing headlights: it points to a trail into the woods, where you'll see a blue light.</li>
+<li>Offer to help the woman being abducted and fetch her car. Then you get abducted.</li>
+</ol>
+<p>It unlocks the “The truth is out there” trophy or achievement.</p>
+<h2>The follow-up: the secret base</h2>
+<p>According to GameSpot, some time later the abducted character has a dream with clues to a rescue mission at South Point Airfield in Hamlet: you get into the radio tower building through the roof and use a keypad. GameSpot says the code is “usually” 2134 and is shown in the dream; other sites give a different combination, so watch the dream in your own game. There's radiation and toxic gas inside, so move fast.</p>
+<h2>A literal Easter egg</h2>
+<p>There's a nest at the top of the tallest tower in Vice City. GameSpot and GamingBible say the player who found it took about seven minutes to climb; up top you can grab an egg and throw it, and we won't spoil what happens next. GamingBible describes it as a communications tower, so the exact spot depends on who's telling it.</p>
+<h2>Bigfoot</h2>
+<p>GameSpot places him in Gullet Marsh and says he's tied to a mission, so he's hard to miss. The Tab points to the wetlands south of Hamlet.</p>
+<h2>Dexter Morgan's apartment</h2>
+<p>It's on Washington Island in Vice City, near the Top Fun Drones shop in Vice Beach, per GameSpot. You can't go inside. Some players think the boat docked nearby looks like the show's Slice of Life.</p>
+<h2>Nods to Red Dead and Liberty City</h2>
+<ul>
+<li>A Western novel about a cowboy from New Austin, a Red Dead Redemption region; GameSpot spotted it in Jacob's Tavern in Millport.</li>
+<li>On the table in Jason's house early in Chapter 1, a former Liberty City mobster's memoir references 2008, the year GTA IV is set.</li>
+</ul>
+<p>You can read excerpts from books and magazines in the game.</p>
+<h2>The secret radio station</h2>
+<p>The Vault Radio unlocks by scanning a poster inside The Vault nightclub in Vice City. Details in <a href="../leonida/radio-stations.html">GTA 6 radio stations</a>.</p>
+<h2>Unconfirmed</h2>
+<ul>
+<li><strong>A lifeguard dog:</strong> a dog in sunglasses on a jet ski that rescues stranded swimmers, around Partridge Bay and Gambit Bay according to Playday. GameSpot has also reported on the dog.</li>
+<li><strong>Michael's boat:</strong> some players think a boat parked by Jason's house is Michael's from GTA V, per Game Rant. Rockstar hasn't confirmed it.</li>
+</ul>
+<p>This is a living page: we'll add more secrets as sources confirm them.</p>""",
+ sources=[("https://www.gamespot.com/articles/gta-6-has-aliens-and-heres-how-to-find-them/", "GameSpot: GTA 6 has aliens, and here's how to find them (Nov 20, 2026)"),
+          ("https://www.gamespot.com/articles/gta-6-easter-eggs-list-and-locations/", "GameSpot: GTA 6 Easter eggs and where to find them (Nov 18, 2026)"),
+          ("https://www.gamingbible.com/news/gta-6-secret-cutscene-seven-minute-tower-easter-egg-795530-20261119", "GamingBible: secret cutscene behind a seven-minute climb (Nov 19, 2026)"),
+          ("https://thetab.com/2026/11/20/bigfoot-and-ufos-all-the-weird-and-wonderful-things-people-are-stumbling-upon-in-gta-6", "The Tab: Bigfoot, UFOs and other weird finds in GTA 6 (Nov 20, 2026)"),
+          ("https://gamerant.com/grand-theft-auto-6-gta-5-easter-egg-michael-boat/", "Game Rant: players think they found Michael's boat"),
+          ("https://playday.one/2026/11/19/gta-6-cool-dog-easter-egg/", "Playday: the jet ski dog Easter egg (Nov 19, 2026)")],
+ related=["questions/cheats.html", "leonida/map-leonida.html", "leonida/radio-stations.html"]))
+
 # Páginas que no son artículos: equivalencias para hreflang y el selector.
 OTRAS = {
     "index.html": "en/",

@@ -189,7 +189,8 @@ def indice(sec):
 
 TOPS = [("pc-online/gta-6-online.html", "Does GTA 6 have online? Current status"),
         ("issues/not-loading-fixes.html", "GTA 6 won't load: what to try"),
-        ("questions/replay-missions.html", "Can you replay missions?"),
+        ("questions/cheats.html", "GTA 6 cheats: every known code"),
+        ("questions/secrets-easter-eggs.html", "Secrets and Easter eggs found so far"),
         ("pc-online/gta-6-pc.html", "When is GTA 6 coming to PC?")]
 
 

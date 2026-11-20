@@ -229,3 +229,20 @@ mark.fill{background:var(--fill);color:var(--ink);padding:0 3px}
 .body-img img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:var(--paper-2)}
 .body-img figcaption{font:500 .68rem/1.3 var(--head);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:5px}
 .body-img .pie{display:block;font:600 .9rem/1.2 var(--head);text-transform:none;letter-spacing:0;color:var(--ink)}
+/* Códigos de trucos y bloques plegables (capítulos con spoilers). */
+.code{font:600 1rem/1.3 var(--head);letter-spacing:.14em;white-space:nowrap}
+td small{display:block;color:var(--muted);font-size:.78rem}
+.prose details{border-top:1px solid var(--line);padding:10px 0}
+.prose details:last-of-type{border-bottom:1px solid var(--line)}
+.prose summary{cursor:pointer;font:600 1.05rem/1.3 var(--head)}
+.prose summary::marker{color:var(--accent)}
+.prose h3{font-size:1.2rem;margin:1.4em 0 .3em}
+@media (max-width:640px){
+  .table-wrap:has(table.cheats){overflow:visible}
+  table.cheats{min-width:0}
+  table.cheats thead{display:none}
+  table.cheats tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+  table.cheats td{display:block;border:0;padding:2px 0}
+  table.cheats td:first-child{font-weight:600}
+  table.cheats td:last-child{color:var(--muted);font-size:.92rem}
+}

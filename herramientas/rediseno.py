@@ -72,7 +72,8 @@ def portada():
                        f'<a class="more" href="{sec}/">{mas}</a></div><ul class="list">{lis}</ul></section>')
     tops = [("novedades/gta-6-online.html", "¿GTA 6 tiene modo online? Estado actual"),
             ("problemas/no-carga-errores.html", "GTA 6 no carga o no arranca: qué hacer"),
-            ("preguntas/repetir-misiones.html", "¿Se pueden repetir las misiones?"),
+            ("preguntas/trucos.html", "Trucos de GTA 6: todos los códigos"),
+            ("preguntas/secretos-easter-eggs.html", "Secretos y easter eggs encontrados"),
             ("novedades/gta-6-pc.html", "¿Cuándo sale GTA 6 en PC?")]
     tops_html = "".join(f'<li><a href="{u}">{t}</a></li>' for u, t in tops)
     return f'''<main id="main">

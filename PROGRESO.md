@@ -3,6 +3,14 @@
 Estado a 20/11/2026. Todo lo descrito como "hecho" está publicado en `main` y comprobado en vivo.
 
 ## Hecho
+- **Actualización con lo publicado en los dos primeros días (20/11/2026, tarde), en los dos idiomas.** Búsqueda en guías, prensa y lo que la prensa recoge de foros y YouTube. Solo se publica con fuente; lo de una sola fuente o de jugadores va marcado.
+  - `trucos` / `cheats`: los **61 trucos** con su requisito de desbloqueo y los **19 códigos** conocidos. 17 coinciden en PowerPyx, Red Bull y Vandal; «Subir el nivel de búsqueda» está en dos fuentes y «Borrachera» en una sola, y así se marca. Avisos: no hay trucos por número de teléfono (Red Bull) y los códigos de cajas fuertes son aleatorios (GameSpot). Datos en `herramientas/trucos_datos.py`; en móvil, cada truco es una ficha (nombre, código, requisito).
+  - Página nueva `preguntas/secretos-easter-eggs.html` / `en/questions/secrets-easter-eggs.html`: abducción alienígena con trofeo y su continuación (GameSpot y The Tab), el huevo de la torre más alta de Vice City (GameSpot y GamingBible), Bigfoot, el piso de Dexter, guiños a Red Dead y Liberty City, The Vault Radio. El perro socorrista y el barco de Michael van en «Sin confirmar».
+  - `emisoras-radio`: las **22 emisoras** según GameSpot (comprobadas en el juego) más la secreta The Vault Radio y cómo desbloquearla; las 6 oficiales de Rockstar van marcadas.
+  - `misiones-capitulo-1`: ahora con los cinco capítulos (122 entradas de GTABase, nombres de capítulo y las cuatro perdibles). Los capítulos 2 a 5 van plegados con aviso de spoilers. Mismo slug; título y H1 nuevos.
+  - `ganar-dinero`: cómo atracar sin que salte la alarma (GameSpot): niveles de seguridad, alarma, cámaras, ganzúa, cajas fuertes aleatorias, billetes marcados y bolsas de tinta.
+  - Comprobado sin cambios: el ranking de coches de GTABase sigue sin velocidades medidas; Sony no ha dado la causa de la caída de PSN; no hay notas de parche ni versión nueva después de la 01.002.001.
+  - Script de la tanda: `herramientas/actualizar_20nov.py` (idempotente).
 - **Imágenes que aportan información (20/11/2026):** a petición del dueño, las imágenes enseñan aquello de lo que habla el texto.
   - `mapa-leonida`: la imagen principal es el **mapa oficial de Leonida** (póster de Rockstar, sin recortar, con enlace a tamaño grande) y hay una galería con las seis zonas. Con el mapa como fuente se ha añadido «Lo que muestra el mapa oficial»: cinco condados (Lummox, Kelly, Leonard, Vice-Dale y Mariana) y dónde queda cada zona.
   - `protagonistas`: retrato de Jason y de Lucia bajo su apartado, y los seis personajes oficiales que nombra la página, cada uno con su nombre.
@@ -55,7 +63,7 @@ Fuentes abiertas y leídas (GamesRadar y PC Gamer, que no se leen sin JavaScript
   - 15 restantes (descarga lenta, precios por país en Latinoamérica, GTA 6 frente a GTA V, DLC): no hay fuente fiable comprobada; precios por país exigirían revisar cada tienda.
 
 ## Falta, por orden
-1. **Vigilar y actualizar** (páginas vivas, en los dos idiomas): `trofeos-logros`, `armas`, `coche-mas-rapido`, `misiones-capitulo-1` (capítulos 2 a 5), `psn-caido-inicio-sesion`, `actualizaciones-parches`. Revisión recomendada a los 7 días (27/11/2026) y a los 30 días (20/12/2026).
+1. **Vigilar y actualizar** (páginas vivas, en los dos idiomas): `trucos` (42 códigos sin descubrir: actualizar `herramientas/trucos_datos.py`), `secretos-easter-eggs`, `emisoras-radio` (que Rockstar confirme las 22), `trofeos-logros` (lista oficial), `armas`, `coche-mas-rapido` (velocidades medidas), `psn-caido-inicio-sesion`, `actualizaciones-parches`. Revisión recomendada a los 7 días (27/11/2026) y a los 30 días (20/12/2026).
 2. **Páginas sin fuente fiable posterior al lanzamiento:** localizaciones y secretos. No se han publicado.
 3. Cuando se toque una página en español, actualizar también su equivalente en `herramientas/paginas_en.py` (y al revés).
 

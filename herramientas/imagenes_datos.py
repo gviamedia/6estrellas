@@ -303,3 +303,8 @@ GALERIAS = {
              "The Hawk & Little Morgan revolvers, one of the Ultimate Edition extras")]),
     ],
 }
+
+IMAGENES["pantano-noche"] = ("shots", "Places/Grassrivers/Grassrivers_08.jpg",
+    "Unas personas en una barca cruzan de noche un pantano de Grassrivers bajo la luna, con un caimán en primer plano",
+    "People on a boat cross a Grassrivers swamp at night under the moon, with a gator in the foreground")
+PAGINAS["preguntas/secretos-easter-eggs.html"] = "pantano-noche"
