@@ -677,7 +677,7 @@ dict(es="novedades/precio-ediciones.html", en="pc-online/price-editions.html",
 <li><strong>Ultimate ($99.99):</strong> digital only. Standard owners can buy the Ultimate Edition Upgrade separately at any time.</li>
 </ul>
 <h2>What the Ultimate Edition adds</h2>
-<p>Rockstar lists, among other items: the '95 Grotti Cheetah, the Hawk &amp; Little Morgan revolvers, personalized weapon variants, Jason's safehouse vehicles, the Rideout Customs and One-Eyed Willie's mod shops, Sara's Unisex Salon, the Stock 305 clothing store, the Electric Fang tattoo parlor, the PTT Youngin$ compound and a classic car collection. Rockstar says the bonuses are spread across the story, with new items in each chapter.</p>
+<p>Rockstar lists, among other items: the '95 Grotti Cheetah, the Hawk &amp; Little Morgan revolvers, personalized weapon variants, Jason's safehouse vehicles, the '67 Vapid Dominator Buggy, the Shitzu Squalo speedboat, the Rideout Customs and One-Eyed Willie's mod shops, Sara's Unisex Salon, the Stock 305 clothing store, the Electric Fang tattoo parlor, the PTT Youngin$ compound and a classic car collection. Rockstar says the bonuses are spread across the story, with new items in each chapter.</p>
 <h2>Pre-order bonuses</h2>
 <p>Digital purchases before November 20, 2026 included the Vintage Vice City Pack ('55 Vapid Stanier sedan and garage, outfits and hairstyles, an exclusive weapon pattern) and a month of GTA+. Physical pre-orders included the Vintage Vice City Pack but not GTA+. Rockstar's launch post called November 19 the last day.</p>
 <h2>Rating</h2>
@@ -802,10 +802,21 @@ dict(es="lugares/mapa-leonida.html", en="leonida/map-leonida.html",
 <li><strong>Ambrosia:</strong> the heartland of Leonida, with old-fashioned values.</li>
 <li><strong>Mount Kalaga:</strong> a national park for hunting, fishing and off-roading.</li>
 </ul>
+<h2>What the official map shows</h2>
+<p>The map poster Rockstar published on the official GTA VI site divides Leonida into five counties: Lummox, Kelly, Leonard, Vice-Dale and Mariana. According to that map:</p>
+<ul>
+<li><strong>Vice City</strong> sits on the east coast in Vice-Dale County, with Vice Beach across the bay.</li>
+<li><strong>Port Gellhorn</strong> is on the west coast.</li>
+<li><strong>Ambrosia</strong> is in the middle of the state.</li>
+<li><strong>Mount Kalaga National Park</strong> covers the north, in Lummox County.</li>
+<li><strong>Grassrivers</strong> lies to the south, between Kelly and Mariana counties.</li>
+<li><strong>Leonida Keys</strong>: the island chain to the south, including Key Lento.</li>
+</ul>
 <h2>Is Vice City Miami?</h2>
 <p>Rockstar never names Florida. Outlets such as PC Gamer compare Vice City to Miami, the Leonida Keys to the Florida Keys and Grassrivers to the Everglades, but those are the press's comparisons. We haven't found reliable equivalents for Port Gellhorn, Ambrosia or Mount Kalaga.</p>
 <p>GTA 6's Vice City is set in the present day, not the 1980s of 2002's Vice City. Want to know who lives here? Meet the <a href="characters.html">protagonists</a>.</p>""",
  sources=[("https://www.rockstargames.com/VI/only-in-leonida", "Rockstar Games: Only in Leonida (official site)"),
+          ("https://www.rockstargames.com/VI/media", "Rockstar Games: official Leonida map poster (Media & Artwork)"),
           ("https://gameinformer.com/2025/05/06/rockstar-shows-off-six-major-areas-of-vice-city-in-grand-theft-auto-vi", "Game Informer: Rockstar shows off six major areas in GTA VI"),
           ("https://www.pcgamer.com/games/grand-theft-auto/gta6-map", "PC Gamer: GTA 6 map")],
  related=["leonida/characters.html", "leonida/radio-stations.html", "money/fastest-car.html"]),

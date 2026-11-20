@@ -3,6 +3,12 @@
 Estado a 20/11/2026. Todo lo descrito como "hecho" está publicado en `main` y comprobado en vivo.
 
 ## Hecho
+- **Imágenes que aportan información (20/11/2026):** a petición del dueño, las imágenes enseñan aquello de lo que habla el texto.
+  - `mapa-leonida`: la imagen principal es el **mapa oficial de Leonida** (póster de Rockstar, sin recortar, con enlace a tamaño grande) y hay una galería con las seis zonas. Con el mapa como fuente se ha añadido «Lo que muestra el mapa oficial»: cinco condados (Lummox, Kelly, Leonard, Vice-Dale y Mariana) y dónde queda cada zona.
+  - `protagonistas`: retrato de Jason y de Lucia bajo su apartado, y los seis personajes oficiales que nombra la página, cada uno con su nombre.
+  - `precio-ediciones`: en español se ha añadido «Qué añade la Ultimate Edition» (lista de Rockstar Support, que ya era fuente) y, en los dos idiomas, una galería con seis de esos extras.
+  - `ganar-dinero`: atraco a una tienda y caza en Mount Kalaga (condado de Lummox, según el mapa oficial). `armas`: los revólveres Hawk & Little Morgan.
+  - Las imágenes del texto llevan pie con lo que se ve, el crédito y `loading="lazy"` (no son la primera de la página). Datos en `GALERIAS` de `herramientas/imagenes_datos.py`; 62 imágenes en total (124 archivos), todas por debajo de 200 KB (el mapa grande, 191 KB, con el texto legible).
 - **Imágenes oficiales (20/11/2026):** nueva regla del dueño: solo capturas y artes oficiales de Rockstar Games, con el crédito visible «Imagen: Rockstar Games» / «Image: Rockstar Games». 42 imágenes de los paquetes oficiales de descarga de <https://www.rockstargames.com/VI/media> (capturas por personaje y lugar, y ventajas de la Ultimate Edition): una por artículo, por índice de sección, por la portada y por la guía, elegidas por tema (Leonida en lugares, Grotti Cheetah en el coche más rápido, Jason y Lucia donde se habla de ellos…). Se descartaron las de contenido sexual explícito. No se usa el logo de GTA VI.
   - WebP en 800 y 1600 px (16:9), todas por debajo de 200 KB (`assets/img/`, 6,9 MB en total), con `srcset`, `width`/`height`, `alt` descriptivo en cada idioma y sin `loading="lazy"` porque cada página tiene una sola imagen (la primera). `fetchpriority="high"` en portada e índices, donde la imagen está arriba.
   - La imagen principal va también en `og:image` (con tipo, tamaño y alt) y en el `image` del JSON-LD de cada artículo.

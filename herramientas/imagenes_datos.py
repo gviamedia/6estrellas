@@ -13,10 +13,18 @@ herramientas/imagenes.py procesa las imágenes y escribe herramientas/imagenes.m
 ZIPS = {
     "shots": "https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip",
     "ultimate": "https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip",
+    # Póster oficial del mapa («Leonida Map & Cover Art Poster», sección Artwork de /VI/media); se guarda como web/Leonida_Map_Poster.jpg
+    "web": "https://www.rockstargames.com/VI/_next/static/media/Leonida_Map_Poster.08ir77j-.26ny.jpg",
 }
+
+# Imágenes que no se recortan a 16:9 (se conserva su proporción): clave -> (ancho, alto) del original.
+SIN_RECORTE = {"mapa-leonida": (2805, 3840)}
 PAGINA_OFICIAL = "https://www.rockstargames.com/VI/media"
 
 IMAGENES = {
+    "mapa-leonida": ("web", "Leonida_Map_Poster.jpg",
+        "Mapa oficial de Leonida: los condados de Lummox, Kelly, Leonard, Vice-Dale y Mariana, con Vice City al este y los Keys al sur",
+        "Official map of Leonida: Lummox, Kelly, Leonard, Vice-Dale and Mariana counties, with Vice City in the east and the Keys to the south"),
     "jason-lucia-moto": ("shots", "People/Jason and Lucia/Jason_and_Lucia_09.jpg",
         "Jason conduce una moto con Lucia detrás apuntando con una pistola, perseguidos por la policía y un helicóptero junto a una noria",
         "Jason rides a motorcycle with Lucia behind him aiming a pistol, chased by police cars and a helicopter near a Ferris wheel"),
@@ -186,6 +194,112 @@ PAGINAS = {
     "novedades/actualizaciones-parches.html": "taller-todoterreno",
     "novedades/mods.html": "lowrider",
     "lugares/protagonistas.html": "jason-lucia-coche",
-    "lugares/mapa-leonida.html": "keys-aerea",
+    "lugares/mapa-leonida.html": "mapa-leonida",
     "lugares/emisoras-radio.html": "vice-city-club",
+}
+
+# ---------------------------------------------------------------- imágenes dentro del texto
+# Solo donde la imagen enseña lo que el texto cuenta (zonas del mapa, personajes, extras de la Ultimate...).
+IMAGENES.update({
+    "zona-vice-city": ("shots", "Places/Vice City/Vice_City_05.jpg",
+        "Bañistas en una playa de Vice City junto a una caseta de socorristas",
+        "Beachgoers on a Vice City beach next to a lifeguard tower"),
+    "zona-keys": ("shots", "Places/Leonida Keys/Leonida_Keys_03.jpg",
+        "Clientes en la terraza del bar The Rusty Anchor, en los Leonida Keys",
+        "Patrons outside The Rusty Anchor bar in the Leonida Keys"),
+    "zona-grassrivers": ("shots", "Places/Grassrivers/Grassrivers_04.jpg",
+        "Camionetas y coches de policía cruzan los pantanos de Grassrivers, con un helicóptero encima y un caimán en el agua",
+        "Pickup trucks and police cars plow through the Grassrivers swamp, with a helicopter overhead and a gator in the water"),
+    "zona-port-gellhorn": ("shots", "Places/Port Gellhorn/Port_Gellhorn_01.jpg",
+        "El letrero de neón del Starlet Motel en Port Gellhorn, de noche",
+        "The neon sign of the Starlet Motel in Port Gellhorn at night"),
+    "zona-ambrosia": ("shots", "Places/Ambrosia/Ambrosia_01.jpg",
+        "Un grupo de moteros recorre la calle principal de Ambrosia",
+        "A biker gang rides down Ambrosia's main street"),
+    "zona-kalaga": ("shots", "Places/Mount Kalaga National Park/Mount_Kalaga_National_Park_03.jpg",
+        "Dos cazadores con chaleco naranja en un bosque de pinos de Mount Kalaga",
+        "Two hunters in orange vests in a Mount Kalaga pine forest"),
+    "jason-retrato": ("shots", "People/Jason Duval/Jason_Duval_02.jpg",
+        "Jason Duval al volante, con gorra hacia atrás y camiseta de tirantes de Leonida",
+        "Jason Duval at the wheel, in a backward cap and a Leonida tank top"),
+    "lucia-retrato": ("shots", "People/Lucia Caminos/Lucia_Caminos_09.jpg",
+        "Lucia Caminos, con auriculares y guantes, en un banco de pesas de un gimnasio",
+        "Lucia Caminos, in headphones and gloves, on a weight bench at the gym"),
+    "cal": ("shots", "People/Cal Hampton/Cal_Hampton_01.jpg",
+        "Cal Hampton, con sombrero y camisa estampada, en un minigolf",
+        "Cal Hampton, in a bucket hat and a patterned shirt, at a mini-golf course"),
+    "boobie": ("shots", "People/Boobie Ike/Boobie_Ike_02.jpg",
+        "Boobie Ike, con el móvil en la mano, en el club Jack of Hearts",
+        "Boobie Ike, phone in hand, at the Jack of Hearts club"),
+    "drequan": ("shots", "People/DreQuan Priest/DreQuan_Priest_03.jpg",
+        "Dre'Quan Priest, de brazos cruzados bajo luces moradas",
+        "Dre'Quan Priest, arms crossed under purple lights"),
+    "realdimez": ("shots", "People/Real Dimez/Real_Dimez_03.jpg",
+        "Real Dimez: una rapera con abrigo de pelo amarillo, al volante de un coche",
+        "Real Dimez: a rapper in a yellow fur coat at the wheel of a car"),
+    "raul": ("shots", "People/Raul Bautista/Raul_Bautista_03.jpg",
+        "Raul Bautista, con camisa blanca, en la cubierta de un barco frente a la ciudad",
+        "Raul Bautista, in a white shirt, on a boat deck facing the city"),
+    "brian": ("shots", "People/Brian Heder/Brian_Heder_04.jpg",
+        "Brian Heder, con camisa estampada, habla con Jason junto a una mujer",
+        "Brian Heder, in a patterned shirt, talks to Jason beside a woman"),
+    "revolveres": ("ultimate", "ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_02.jpg",
+        "Los revólveres Hawk & Little Morgan sobre una mesa",
+        "The Hawk & Little Morgan revolvers on a table"),
+    "buggy": ("ultimate", "ULTIMATE_EDITION_VAPID_BUGGY_01.jpg",
+        "El Vapid Dominator Buggy salpicando barro por un camino",
+        "The Vapid Dominator Buggy kicking up mud on a dirt road"),
+    "electric-fang": ("ultimate", "ULTIMATE_EDITION_ELECTRIC_FANG_01.jpg",
+        "La fachada del Electric Fang Tattoo Parlor con su letrero de neón",
+        "The Electric Fang Tattoo Parlor storefront and its neon sign"),
+    "squalo": ("ultimate", "ULTIMATE_EDITION_SQUALO_01.jpg",
+        "La lancha Shitzu Squalo navegando frente a Vice City al anochecer",
+        "The Shitzu Squalo speedboat cruising past Vice City at dusk"),
+    "stock305": ("ultimate", "ULTIMATE_EDITION_STOCK_305_03.jpg",
+        "El letrero de la tienda de ropa Stock 305",
+        "The sign of the Stock 305 clothing store"),
+    "caza": ("shots", "Places/Mount Kalaga National Park/Mount_Kalaga_National_Park_05.jpg",
+        "Un puma acecha a varios ciervos junto a un arroyo en Mount Kalaga",
+        "A cougar stalks a group of deer by a creek in Mount Kalaga"),
+})
+
+# GALERIAS: página en español -> lista de (posición, ancla_es, ancla_en, [(clave, pie_es, pie_en), ...])
+# posición "antes" o "despues" del texto ancla (que debe existir tal cual en la página / en paginas_en.py).
+GALERIAS = {
+    "lugares/mapa-leonida.html": [
+        ("antes", "<h2>Lo que muestra el mapa oficial</h2>", "<h2>What the official map shows</h2>", [
+            ("zona-vice-city", "Vice City", "Vice City"),
+            ("zona-keys", "Leonida Keys", "Leonida Keys"),
+            ("zona-grassrivers", "Grassrivers", "Grassrivers"),
+            ("zona-port-gellhorn", "Port Gellhorn", "Port Gellhorn"),
+            ("zona-ambrosia", "Ambrosia", "Ambrosia"),
+            ("zona-kalaga", "Mount Kalaga", "Mount Kalaga")]),
+    ],
+    "lugares/protagonistas.html": [
+        ("despues", "<h2>Jason Duval</h2>", "<h2>Jason Duval</h2>", [("jason-retrato", "Jason Duval", "Jason Duval")]),
+        ("despues", "<h2>Lucia Caminos</h2>", "<h2>Lucia Caminos</h2>", [("lucia-retrato", "Lucia Caminos", "Lucia Caminos")]),
+        ("despues", "Raul Bautista y Brian Heder.</p>", "Raul Bautista and Brian Heder.</p>", [
+            ("cal", "Cal Hampton", "Cal Hampton"), ("boobie", "Boobie Ike", "Boobie Ike"),
+            ("drequan", "Dre'Quan Priest", "Dre'Quan Priest"), ("realdimez", "Real Dimez", "Real Dimez"),
+            ("raul", "Raul Bautista", "Raul Bautista"), ("brian", "Brian Heder", "Brian Heder")]),
+    ],
+    "novedades/precio-ediciones.html": [
+        ("antes", "<h2>Clasificación por edades</h2>", "<h2>Pre-order bonuses</h2>", [
+            ("cheetah", "'95 Grotti Cheetah", "'95 Grotti Cheetah"),
+            ("revolveres", "Revólveres Hawk & Little Morgan", "Hawk & Little Morgan revolvers"),
+            ("buggy", "'67 Vapid Dominator Buggy", "'67 Vapid Dominator Buggy"),
+            ("squalo", "Shitzu Squalo", "Shitzu Squalo"),
+            ("electric-fang", "Electric Fang Tattoo Parlor", "Electric Fang Tattoo Parlor"),
+            ("stock305", "Tienda de ropa Stock 305", "Stock 305 clothing store")]),
+    ],
+    "dinero/ganar-dinero.html": [
+        ("antes", "<h2>Otras opciones</h2>", "<h2>Other options</h2>", [
+            ("jason-lucia-asalto", "Atraco a una tienda", "A store robbery"),
+            ("caza", "Caza en Mount Kalaga, en el condado de Lummox", "Hunting in Mount Kalaga, Lummox County")]),
+    ],
+    "preguntas/armas.html": [
+        ("antes", "<h2>¿Cuál es la mejor arma?</h2>", "<h2>What's the best gun?</h2>", [
+            ("revolveres", "Los revólveres Hawk & Little Morgan, uno de los extras de la Ultimate Edition",
+             "The Hawk & Little Morgan revolvers, one of the Ultimate Edition extras")]),
+    ],
 }

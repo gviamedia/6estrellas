@@ -172,6 +172,8 @@ def procesar(p, MAPA):
     if rel == "index.html":
         s = re.sub(r'<main id="main">.*?</main>', lambda m: portada(), s, count=1, flags=re.S)
     s = imagen(rel, s, pre)
+    s = re.sub(r'\n?<div class="gallery[^"]*">.*?</div>(?=\n)', "", s, flags=re.S)
+    s = sitio.con_galerias(s, rel, "es", pre)
     if s != o:
         p.write_text(s, encoding="utf-8", newline="")
         return True

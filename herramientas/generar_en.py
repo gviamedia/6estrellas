@@ -158,7 +158,7 @@ def articulo(a):
 <p class="meta"><time datetime="{REVIEW[0]}">{REVIEW[1]}</time><span>By <a href="{p}about.html">Six Stars Editorial Team</a></span><span class="chip {cls}">{label}</span></p>
 <div class="answer"><p class="answer-label">Short answer</p><p>{esc(a["answer"])}</p></div>{fig(en_rel)}
 <div class="prose">
-{a["body"]}
+{sitio.con_galerias(a["body"], a["es"], "en", s)}
 </div>
 <section class="sources"><h2>Sources</h2><ul>{src}</ul>
 <p class="small">Written by Six Stars from the sources above, checked on November 20, 2026. Spot a mistake? Tell us via <a href="{p}about.html">About us</a>.</p></section>

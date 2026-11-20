@@ -10,7 +10,7 @@ y reescribe herramientas/imagenes.md. Requiere Pillow.
 import pathlib, sys
 from PIL import Image
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from imagenes_datos import IMAGENES, PAGINAS, ZIPS, PAGINA_OFICIAL
+from imagenes_datos import IMAGENES, PAGINAS, ZIPS, PAGINA_OFICIAL, SIN_RECORTE, GALERIAS
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "img"
@@ -30,7 +30,7 @@ def recorte_16_9(im):
 
 
 def guardar(im, path):
-    for q in (78, 72, 66, 60, 54, 48, 42):
+    for q in (78, 72, 66, 60, 54, 48, 42, 36):
         im.save(path, "WEBP", quality=q, method=6)
         if path.stat().st_size <= MAX:
             return q
@@ -40,13 +40,19 @@ def guardar(im, path):
 def main():
     src = pathlib.Path(sys.argv[1])
     OUT.mkdir(parents=True, exist_ok=True)
-    usadas = set(PAGINAS.values())
+    en_galerias = {c for grupos in GALERIAS.values() for g in grupos for c, _, _ in g[3]}
+    usadas = set(PAGINAS.values()) | en_galerias
+    for viejo in OUT.glob("*.webp"):  # quita las que ya no usa ninguna página
+        if viejo.name.rsplit("-", 1)[0] not in usadas:
+            viejo.unlink()
     for clave in sorted(usadas):
         paquete, ruta, _, _ = IMAGENES[clave]
-        im = recorte_16_9(Image.open(src / paquete / ruta).convert("RGB"))
+        im = Image.open(src / paquete / ruta).convert("RGB")
+        if clave not in SIN_RECORTE:
+            im = recorte_16_9(im)
         for w in TAMANOS:
             out = OUT / f"{clave}-{w}.webp"
-            q = guardar(im.resize((w, w * 9 // 16), Image.LANCZOS), out)
+            q = guardar(im.resize((w, round(w * im.height / im.width)), Image.LANCZOS), out)
             print(f"{out.name}: {out.stat().st_size // 1024} KB (q{q})")
     # Documentación del origen
     lineas = ["# Imágenes de la web", "",
@@ -58,7 +64,8 @@ def main():
                "| Archivo | Origen (paquete / archivo) | Páginas |", "|---|---|---|"]
     for clave in sorted(usadas):
         paquete, ruta, _, _ = IMAGENES[clave]
-        paginas = ", ".join(f"`{p}`" for p, c in PAGINAS.items() if c == clave)
+        paginas = ", ".join([f"`{p}`" for p, c in PAGINAS.items() if c == clave] +
+                            [f"`{p}` (en el texto)" for p, gs in GALERIAS.items() if any(c == clave for g in gs for c, _, _ in g[3])])
         lineas.append(f"| `assets/img/{clave}-{{800,1600}}.webp` | {ZIPS[paquete]} → `{ruta}` | {paginas} (y su versión en inglés) |")
     (ROOT / "herramientas" / "imagenes.md").write_text("\n".join(lineas) + "\n", encoding="utf-8", newline="")
     print(f"{len(usadas)} imágenes; herramientas/imagenes.md actualizado")

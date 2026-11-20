@@ -6,7 +6,7 @@ Lo usan herramientas/rediseno.py (páginas en español ya escritas) y herramient
 import html
 
 BASE = "https://6estrellas.org/"
-CSS_V = 9
+CSS_V = 11
 JS_V = 9
 SEARCH_V = 3
 THEME = "#f6f3ed"
@@ -113,7 +113,7 @@ def preload(p_assets):
 
 
 # ---------------------------------------------------------------- imágenes (Rockstar Games)
-from imagenes_datos import IMAGENES, PAGINAS as IMG_PAGINAS
+from imagenes_datos import IMAGENES, PAGINAS as IMG_PAGINAS, SIN_RECORTE, GALERIAS
 
 CREDITO = {"es": "Imagen: Rockstar Games", "en": "Image: Rockstar Games"}
 SIZES = {"art": "(min-width: 700px) 640px, 100vw", "home": "(min-width: 900px) 660px, 100vw",
@@ -128,20 +128,65 @@ def alt(clave, lang):
     return IMAGENES[clave][2 if lang == "es" else 3]
 
 
+def dims(clave, w=1600):
+    if clave in SIN_RECORTE:
+        ow, oh = SIN_RECORTE[clave]
+        return w, round(w * oh / ow)
+    return w, w * 9 // 16
+
+
+AMPLIAR = {"es": "Ver el mapa a tamaño grande", "en": "View the map full size"}
+
+
 def figura(clave, lang, a, tipo="art", prioridad=False):
     """a: prefijo relativo hasta la raíz del sitio. Es la primera (y única) imagen de cada página:
     sin loading="lazy"; fetchpriority="high" solo donde la imagen está arriba del todo (portada, índices)."""
     fp = ' fetchpriority="high"' if prioridad else ""
     clase = {"art": "lead-img", "home": "lead-img home-img", "index": "lead-img index-img"}[tipo]
-    return (f'<figure class="{clase}"><img src="{a}assets/img/{clave}-800.webp" '
-            f'srcset="{a}assets/img/{clave}-800.webp 800w, {a}assets/img/{clave}-1600.webp 1600w" '
-            f'sizes="{SIZES[tipo]}" width="1600" height="900" alt="{esc(alt(clave, lang))}" decoding="async"{fp}>'
-            f'<figcaption>{CREDITO[lang]}</figcaption></figure>')
+    w, h = dims(clave)
+    img = (f'<img src="{a}assets/img/{clave}-800.webp" '
+           f'srcset="{a}assets/img/{clave}-800.webp 800w, {a}assets/img/{clave}-1600.webp 1600w" '
+           f'sizes="{SIZES[tipo]}" width="{w}" height="{h}" alt="{esc(alt(clave, lang))}" decoding="async"{fp}>')
+    cap = CREDITO[lang]
+    if clave in SIN_RECORTE:  # mapa: proporción original y enlace a la versión grande
+        clase += " map-img"
+        img = f'<a href="{a}assets/img/{clave}-1600.webp">{img}</a>'
+        cap += f' · <a href="{a}assets/img/{clave}-1600.webp">{AMPLIAR[lang]}</a>'
+    return f'<figure class="{clase}">{img}<figcaption>{cap}</figcaption></figure>'
 
 
 def og_imagen(clave, lang):
     return (f'<meta property="og:image" content="{img_url(clave)}">\n'
             f'<meta property="og:image:type" content="image/webp">\n'
-            f'<meta property="og:image:width" content="1600">\n'
-            f'<meta property="og:image:height" content="900">\n'
+            f'<meta property="og:image:width" content="{dims(clave)[0]}">\n'
+            f'<meta property="og:image:height" content="{dims(clave)[1]}">\n'
             f'<meta property="og:image:alt" content="{esc(alt(clave, lang))}">')
+
+
+def galeria(items, lang, a):
+    """Imágenes dentro del texto (no son la primera de la página): loading="lazy" y pie descriptivo + crédito.
+    Una sola imagen va a lo ancho; dos o más, en rejilla."""
+    figs = []
+    sizes = "(min-width: 700px) 640px, 100vw" if len(items) == 1 else "(min-width: 700px) 316px, 50vw"
+    for clave, pie_es, pie_en in items:
+        w, h = dims(clave)
+        pie = pie_es if lang == "es" else pie_en
+        figs.append(f'<figure class="body-img"><img src="{a}assets/img/{clave}-800.webp" '
+                    f'srcset="{a}assets/img/{clave}-800.webp 800w, {a}assets/img/{clave}-1600.webp 1600w" '
+                    f'sizes="{sizes}" width="{w}" height="{h}" alt="{esc(alt(clave, lang))}" loading="lazy" decoding="async">'
+                    f'<figcaption><span class="pie">{esc(pie)}</span> {CREDITO[lang]}</figcaption></figure>')
+    clase = "gallery" if len(items) > 1 else "gallery gallery-1"
+    return f'<div class="{clase}">' + "".join(figs) + '</div>'
+
+
+def con_galerias(html, es_rel, lang, a):
+    """Inserta las galerías de GALERIAS[es_rel] en html. Idempotente (quita las anteriores)."""
+    import re
+    html = re.sub(r'<div class="gallery[^"]*">.*?</div>(?=\n|<)', "", html, flags=re.S)
+    for pos, ancla_es, ancla_en, items in GALERIAS.get(es_rel, []):
+        ancla = ancla_es if lang == "es" else ancla_en
+        if ancla not in html:
+            raise SystemExit(f"{es_rel} ({lang}): no encuentro el ancla {ancla!r}")
+        g = galeria(items, lang, a)
+        html = html.replace(ancla, (g + "\n" + ancla) if pos == "antes" else (ancla + "\n" + g), 1)
+    return html

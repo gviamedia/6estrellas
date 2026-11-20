@@ -119,7 +119,7 @@ for p in paginas():
         pass
     # Imágenes: alt, dimensiones, srcset existente, crédito y og:image local.
     credito = "Image: Rockstar Games" if lang == "en" else "Imagen: Rockstar Games"
-    for fm in re.finditer(r'<figure class="lead-img[^"]*">(.*?)</figure>', s, re.S):
+    for fm in re.finditer(r'<figure class="(?:lead|body)-img[^"]*">(.*?)</figure>', s, re.S):
         f = fm.group(1)
         im = re.search(r"<img ([^>]+)>", f)
         attrs = dict(re.findall(r'(\w[\w-]*)="([^"]*)"', im.group(1))) if im else {}
