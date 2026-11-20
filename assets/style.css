@@ -246,3 +246,7 @@ td small{display:block;color:var(--muted);font-size:.78rem}
   table.cheats td:first-child{font-weight:600}
   table.cheats td:last-child{color:var(--muted);font-size:.92rem}
 }
+/* Logo: monograma (cuadrado de tinta con «6» y estrella magenta) + nombre. */
+.brand{display:inline-flex;align-items:center;gap:.32em}
+.brand-mark{width:.92em;height:.92em;flex:none;display:block}
+.site-footer .brand-mark{width:1em;height:1em}

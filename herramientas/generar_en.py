@@ -74,7 +74,7 @@ def head(en_rel, title, desc, otype="article", robots="index, follow, max-image-
     hl = sitio.hreflang(es_url(es_rel), url(en_rel)) + "\n" if (alt and es_rel) else ""
     canon = f'<link rel="canonical" href="{url(en_rel)}">\n' if "noindex" not in robots else ""
     c = clave_img(en_rel)
-    og_img = sitio.og_imagen(c, "en") if c else f'<meta property="og:image" content="{BASE}assets/og.png">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="675">'
+    og_img = sitio.og_imagen(c, "en") if c else f'<meta property="og:image" content="{BASE}assets/og-en.png">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="675">'
     lds = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>\n' for x in ld)
     return f'''<!doctype html>
 <html lang="en">
@@ -94,7 +94,8 @@ def head(en_rel, title, desc, otype="article", robots="index, follow, max-image-
 {og_img}
 <meta name="theme-color" content="{sitio.THEME}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="{a}assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{a}assets/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{a}assets/apple-touch-icon.png">
 {sitio.preload(a)}
 <link rel="stylesheet" href="{a}assets/style.css?v={sitio.CSS_V}">
 {lds}</head>
@@ -396,7 +397,8 @@ def pagina_404():
 <meta name="description" content="{d}">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="{sitio.THEME}">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 {sitio.preload("/")}
 <link rel="stylesheet" href="/assets/style.css?v={sitio.CSS_V}">
 </head>

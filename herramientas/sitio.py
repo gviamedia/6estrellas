@@ -3,10 +3,10 @@
 Lo usan herramientas/rediseno.py (páginas en español ya escritas) y herramientas/generar_en.py
 (versión en inglés). Si cambias algo aquí, vuelve a ejecutar los dos.
 """
-import html
+import html, pathlib
 
 BASE = "https://6estrellas.org/"
-CSS_V = 13
+CSS_V = 14
 JS_V = 9
 SEARCH_V = 3
 THEME = "#f6f3ed"
@@ -48,6 +48,12 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+def marca():
+    """Monograma del logo (assets/logo-mark.svg, generado por herramientas/logo.py), en línea y decorativo."""
+    svg = (pathlib.Path(__file__).resolve().parent.parent / "assets" / "logo-mark.svg").read_text(encoding="utf-8")
+    return svg.replace('viewBox="0 0 64 64" width="64" height="64"', 'viewBox="0 0 64 64" class="brand-mark" aria-hidden="true" focusable="false"', 1)
+
+
 def consent(lang, p):
     t = T[lang]
     r, c, a, g = t["c_btn"]
@@ -86,7 +92,7 @@ def header(lang, p, actual=None, alt=None):
         pares = actual_html + otro_html if lang == "es" else otro_html + actual_html
         lang_nav = f'<nav class="lang" aria-label="{t["idioma"]}">{pares}</nav>'
     return (f'<header class="site-header"><div class="wrap">\n'
-            f'<div class="masthead"><a class="brand" href="{home}">{NOMBRE[lang]}</a>{lang_nav}</div>\n'
+            f'<div class="masthead"><a class="brand" href="{home}">{marca()}<span>{NOMBRE[lang]}</span></a>{lang_nav}</div>\n'
             f'<nav class="sections" aria-label="{t["secciones"]}"><ul>\n' + "".join(items) + '\n</ul></nav>\n'
             f'</div></header>')
 
@@ -96,7 +102,7 @@ def footer(lang, p):
     links = "".join(f'<li><a href="{p}{u}">{n}</a></li>\n' for u, n in (t["sobre"], t["aviso"], t["priv"], t["cookies"]))
     home = p if p else "./"
     return (f'<footer class="site-footer"><div class="wrap">\n'
-            f'<a class="brand" href="{home}">{NOMBRE[lang]}</a>\n'
+            f'<a class="brand" href="{home}">{marca()}<span>{NOMBRE[lang]}</span></a>\n'
             f'<p class="disclaimer">{t["disclaimer"]}</p>\n'
             f'<ul class="foot-links">\n{links}<li><button type="button" class="linklike" data-open-consent>{t["conf"]}</button></li>\n</ul>\n'
             f'<p class="small">{t["revision"]}</p>\n</div></footer>')

@@ -138,6 +138,10 @@ def procesar(p, MAPA):
     s = re.sub(r'<meta name="theme-color"[^>]*>\n?', "", s)
     s = s.replace('<meta name="twitter:card"', f'<meta name="theme-color" content="{sitio.THEME}">\n<meta name="twitter:card"', 1) if 'name="theme-color"' not in s else s
     s = re.sub(r'style\.css\?v=\d+', f"style.css?v={sitio.CSS_V}", s)
+    s = re.sub(r'favicon\.svg(\?v=\d+)?"', 'favicon.svg?v=2"', s)
+    if 'rel="apple-touch-icon"' not in s:
+        pa = "https://6estrellas.org/" if es404 else pre
+        s = re.sub(r'(<link rel="icon" [^>]*>)', lambda m: m.group(1) + f'\n<link rel="apple-touch-icon" href="{pa}assets/apple-touch-icon.png">', s, count=1)
     s = re.sub(r'site\.js\?v=\d+', f"site.js?v={sitio.JS_V}", s)
     s = re.sub(r'search\.js\?v=\d+', f"search.js?v={sitio.SEARCH_V}", s)
     if "oswald-latin-wght.woff2" not in s:
