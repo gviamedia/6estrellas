@@ -175,7 +175,7 @@ mark.fill{background:var(--fill);color:var(--ink);padding:0 3px}
 .site-footer{border-top:3px solid var(--rule);padding-block:20px 28px;font-size:.92rem;color:var(--muted)}
 .site-footer .brand{font-size:1.4rem;display:inline-block;margin-bottom:10px}
 .foot-links{list-style:none;padding:0;margin:12px 0;display:flex;flex-wrap:wrap;gap:0 18px;font:500 .85rem/1.3 var(--head);text-transform:uppercase;letter-spacing:.06em}
-.foot-links a,.foot-links .linklike{color:var(--ink);text-decoration:none}
+.foot-links a,.foot-links .linklike{color:var(--ink);text-decoration:none;text-transform:inherit;letter-spacing:inherit;font:inherit}
 .foot-links a:hover,.foot-links .linklike:hover{color:var(--accent)}
 .disclaimer{max-width:var(--measure)}
 
