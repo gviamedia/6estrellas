@@ -98,6 +98,26 @@ def portada():
 </main>'''
 
 
+def imagen(rel, s, pre):
+    """Imagen principal (Rockstar Games): figura, og:image y JSON-LD. Idempotente."""
+    clave = sitio.IMG_PAGINAS.get(rel)
+    if not clave:
+        return s
+    s = re.sub(r'<figure class="lead-img[^"]*">.*?</figure>\n?', "", s, flags=re.S)
+    s = re.sub(r'<meta property="og:image[^>]*>\n?', "", s)
+    s = s.replace('<meta name="twitter:card"', sitio.og_imagen(clave, "es") + '\n<meta name="twitter:card"', 1)
+    s = re.sub(r'"image": \[[^\]]*\]', lambda m: f'"image": ["{sitio.img_url(clave)}"]', s)
+    partes = rel.split("/")
+    if rel == "index.html":
+        s = s.replace('<article class="lead-main">\n', '<article class="lead-main">\n' + sitio.figura(clave, "es", pre, "home", True) + "\n", 1)
+    elif len(partes) == 2 and partes[1] == "index.html":
+        s = re.sub(r'(<div class="index-head">.*?<p class="lead">.*?</p>)(</div>)',
+                   lambda m: m.group(1) + sitio.figura(clave, "es", pre, "index", True) + m.group(2), s, count=1, flags=re.S)
+    else:
+        s = re.sub(r'(<div class="answer">.*?</div>)', lambda m: m.group(1) + sitio.figura(clave, "es", pre, "art"), s, count=1, flags=re.S)
+    return s
+
+
 def procesar(p, MAPA):
     rel = p.relative_to(ROOT).as_posix()
     s = p.read_text(encoding="utf-8")
@@ -151,6 +171,7 @@ def procesar(p, MAPA):
         s = s.replace("</head>", "<script>if(location.pathname.indexOf('/en/')===0&&location.pathname!=='/en/404.html')location.replace('/en/404.html');</script>\n</head>", 1)
     if rel == "index.html":
         s = re.sub(r'<main id="main">.*?</main>', lambda m: portada(), s, count=1, flags=re.S)
+    s = imagen(rel, s, pre)
     if s != o:
         p.write_text(s, encoding="utf-8", newline="")
         return True

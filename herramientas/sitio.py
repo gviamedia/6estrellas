@@ -6,7 +6,7 @@ Lo usan herramientas/rediseno.py (páginas en español ya escritas) y herramient
 import html
 
 BASE = "https://6estrellas.org/"
-CSS_V = 8
+CSS_V = 9
 JS_V = 9
 SEARCH_V = 3
 THEME = "#f6f3ed"
@@ -110,3 +110,38 @@ def hreflang(es_url, en_url):
 
 def preload(p_assets):
     return f'<link rel="preload" href="{p_assets}assets/fonts/oswald-latin-wght.woff2" as="font" type="font/woff2" crossorigin>'
+
+
+# ---------------------------------------------------------------- imágenes (Rockstar Games)
+from imagenes_datos import IMAGENES, PAGINAS as IMG_PAGINAS
+
+CREDITO = {"es": "Imagen: Rockstar Games", "en": "Image: Rockstar Games"}
+SIZES = {"art": "(min-width: 700px) 640px, 100vw", "home": "(min-width: 900px) 660px, 100vw",
+         "index": "(min-width: 1120px) 1088px, 100vw"}
+
+
+def img_url(clave, w=1600):
+    return f"{BASE}assets/img/{clave}-{w}.webp"
+
+
+def alt(clave, lang):
+    return IMAGENES[clave][2 if lang == "es" else 3]
+
+
+def figura(clave, lang, a, tipo="art", prioridad=False):
+    """a: prefijo relativo hasta la raíz del sitio. Es la primera (y única) imagen de cada página:
+    sin loading="lazy"; fetchpriority="high" solo donde la imagen está arriba del todo (portada, índices)."""
+    fp = ' fetchpriority="high"' if prioridad else ""
+    clase = {"art": "lead-img", "home": "lead-img home-img", "index": "lead-img index-img"}[tipo]
+    return (f'<figure class="{clase}"><img src="{a}assets/img/{clave}-800.webp" '
+            f'srcset="{a}assets/img/{clave}-800.webp 800w, {a}assets/img/{clave}-1600.webp 1600w" '
+            f'sizes="{SIZES[tipo]}" width="1600" height="900" alt="{esc(alt(clave, lang))}" decoding="async"{fp}>'
+            f'<figcaption>{CREDITO[lang]}</figcaption></figure>')
+
+
+def og_imagen(clave, lang):
+    return (f'<meta property="og:image" content="{img_url(clave)}">\n'
+            f'<meta property="og:image:type" content="image/webp">\n'
+            f'<meta property="og:image:width" content="1600">\n'
+            f'<meta property="og:image:height" content="900">\n'
+            f'<meta property="og:image:alt" content="{esc(alt(clave, lang))}">')

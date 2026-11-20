@@ -117,6 +117,26 @@ for p in paginas():
             err(f"{nombre}: enlace roto {h}")
     for m in re.finditer(r'href="([^"]+)"[^>]*data-lang', s):
         pass
+    # Imágenes: alt, dimensiones, srcset existente, crédito y og:image local.
+    credito = "Image: Rockstar Games" if lang == "en" else "Imagen: Rockstar Games"
+    for fm in re.finditer(r'<figure class="lead-img[^"]*">(.*?)</figure>', s, re.S):
+        f = fm.group(1)
+        im = re.search(r"<img ([^>]+)>", f)
+        attrs = dict(re.findall(r'(\w[\w-]*)="([^"]*)"', im.group(1))) if im else {}
+        if not attrs.get("alt"):
+            err(f"{nombre}: imagen sin alt")
+        if not (attrs.get("width") and attrs.get("height")):
+            err(f"{nombre}: imagen sin width/height")
+        for cand in re.findall(r"([^\s,]+) \d+w", attrs.get("srcset", "")):
+            if not (p.parent / cand).resolve().exists():
+                err(f"{nombre}: srcset roto {cand}")
+        if credito not in f:
+            err(f"{nombre}: imagen sin crédito «{credito}»")
+    og = re.search(r'<meta property="og:image" content="([^"]+)"', s)
+    if og and og.group(1).startswith(BASE):
+        f = archivo_de(og.group(1))
+        if not f or not f.exists():
+            err(f"{nombre}: og:image no existe ({og.group(1)})")
     nads = len(re.findall(r'<aside class="ad"', s))
     es_articulo = '"@type": "Article"' in s
     if nads > 1:
@@ -133,6 +153,10 @@ for p in paginas():
     sel = re.search(r'<a class="lang-switch"[^>]*href="([^"]+)"', s)
     if HAY_EN and hl and not sel:
         err(f"{nombre}: sin selector de idioma")
+
+for img in (ROOT / "assets" / "img").glob("*.webp"):
+    if img.stat().st_size > 200 * 1024:
+        err(f"{img.name}: pesa más de 200 KB")
 
 for a, vs in versiones.items():
     if len(vs) > 1:

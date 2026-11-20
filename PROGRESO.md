@@ -3,6 +3,13 @@
 Estado a 20/11/2026. Todo lo descrito como "hecho" está publicado en `main` y comprobado en vivo.
 
 ## Hecho
+- **Imágenes oficiales (20/11/2026):** nueva regla del dueño: solo capturas y artes oficiales de Rockstar Games, con el crédito visible «Imagen: Rockstar Games» / «Image: Rockstar Games». 42 imágenes de los paquetes oficiales de descarga de <https://www.rockstargames.com/VI/media> (capturas por personaje y lugar, y ventajas de la Ultimate Edition): una por artículo, por índice de sección, por la portada y por la guía, elegidas por tema (Leonida en lugares, Grotti Cheetah en el coche más rápido, Jason y Lucia donde se habla de ellos…). Se descartaron las de contenido sexual explícito. No se usa el logo de GTA VI.
+  - WebP en 800 y 1600 px (16:9), todas por debajo de 200 KB (`assets/img/`, 6,9 MB en total), con `srcset`, `width`/`height`, `alt` descriptivo en cada idioma y sin `loading="lazy"` porque cada página tiene una sola imagen (la primera). `fetchpriority="high"` en portada e índices, donde la imagen está arriba.
+  - La imagen principal va también en `og:image` (con tipo, tamaño y alt) y en el `image` del JSON-LD de cada artículo.
+  - En el diseño: proporción fija (16:9; 21:9 en los índices en escritorio), a sangre en móvil, sin esquinas ni sombras. En los artículos va justo después de la respuesta corta, para no retrasarla.
+  - Origen de cada imagen en `herramientas/imagenes.md`; la asignación y los textos alternativos están en `herramientas/imagenes_datos.py`; `herramientas/imagenes.py RUTA` regenera los WebP desde los ZIP oficiales (los originales no se guardan en el repositorio). `comprobar.py` revisa alt, dimensiones, srcset, crédito, og:image y el límite de 200 KB.
+  - «Quiénes somos»/«About» y el aviso legal explican el origen de las imágenes.
+  - **Riesgo anotado:** la política de Rockstar/Take-Two sobre material de fans restringe el uso comercial, y la web lleva anuncios. Decisión del dueño; conviene revisarlo si llegan ingresos.
 - **Versión en inglés «Six Stars» (20/11/2026):** 48 páginas en `/en/`: portada, 5 índices, 35 artículos, guía de inicio (`beginners-guide.html`), sobre (`about.html`), aviso legal, privacidad, cookies, buscador (`search.html`) y 404. Redactada para lectores de EE. UU. (títulos, H1, descripciones y slugs en inglés; términos de la comunidad: *Wasted/Busted*, *fences*, *wanted level*, *safehouse*), no traducida frase a frase. Firma «Six Stars Editorial Team». Fuentes originales en inglés cuando existen (Rockstar Newswire, Rockstar Support, Take-Two IR, prensa en inglés); las que solo existen en español o alemán se marcan como tales. Etiquetas de certeza traducidas y explicadas en `about.html`. Precio en dólares (Take-Two: 79,99 $ y 99,99 $) y horas en ET.
   - SEO: `lang="en"`, canonical propio, hreflang es/en/x-default recíprocos en las 47 parejas (x-default = español), JSON-LD con `inLanguage: "en"`, `og:locale en_US`, 43 URLs inglesas en el sitemap (las legales, el buscador y la 404 van con `noindex`, igual que en español).
   - Selector ES/EN en la cabecera de todas las páginas, que lleva a la página equivalente.
@@ -31,13 +38,13 @@ Fuentes abiertas y leídas (GamesRadar y PC Gamer, que no se leen sin JavaScript
 - Técnico: código muerto del formulario de correo fuera de `site.js`; título accesible en el iframe del anuncio; orden de encabezados de la guía (h1 → h2); BreadcrumbList en los 5 índices; `mantenimiento.py` ya no cambia `dateModified` por commits de diseño («Diseño:»).
 
 ## Backlog de la auditoría (26 puntos) frente a lo hecho
-- **Hecho:** 2, 3, 4, 5, 6, 7, 9, 11 (no hay imágenes de Rockstar), 12, 13, 14, 19 (buscador), 21, 25. **8** en parte: etiquetas por artículo y explicación en `sobre.html`; no hay bloque «cómo lo hemos comprobado» por artículo porque repetiría la sección de fuentes. **15** en parte: 8 de 9 temas (falta lo de abajo). **10** en parte: `herramientas/sitio.py` (cabecera, menú, pie, aviso), `rediseno.py` y `generar_en.py` dan una plantilla común; el contenido en español sigue en los HTML.
+- **Hecho:** 2, 3, 4, 5, 6, 7, 9, 11 (sustituido el 20/11 por la nueva regla: solo imágenes oficiales de Rockstar con crédito), 12, 13, 14, 19 (buscador), 21, 25. **8** en parte: etiquetas por artículo y explicación en `sobre.html`; no hay bloque «cómo lo hemos comprobado» por artículo porque repetiría la sección de fuentes. **15** en parte: 8 de 9 temas (falta lo de abajo). **10** en parte: `herramientas/sitio.py` (cabecera, menú, pie, aviso), `rediseno.py` y `generar_en.py` dan una plantilla común; el contenido en español sigue en los HTML.
 - **Anulados por el dueño:** 16 (pruebas propias) y la puerta del gestor.
 - **Dependen del dueño:** 1 (datos del titular: siguen pendientes por decisión suya), 17 (Search Console/Bing: no hay acceso), 23 (canal de distribución), 26 (registro de marca).
 - **No se hacen, con motivo:**
   - 18 (Brevo y lista de correo): sin tráfico medido no compensa el trabajo legal y de mantenimiento; la privacidad ya dice que no hay lista.
   - 19 (RSS y «Actualizado hoy»): poco impacto con el tráfico actual; las fechas reales ya están en cada página y en el sitemap.
-  - 20 (imágenes propias por página): esfuerzo medio y Discover improbable sin tráfico; no se pueden usar capturas de Rockstar.
+  - 20 (imágenes por página): hecho con imágenes oficiales de Rockstar, no propias (ver arriba).
   - 24 (aviso de spoilers): no hay spoilers publicados (las misiones van solo con títulos; finales sin detalles).
   - 15 restantes (descarga lenta, precios por país en Latinoamérica, GTA 6 frente a GTA V, DLC): no hay fuente fiable comprobada; precios por país exigirían revisar cada tienda.
 

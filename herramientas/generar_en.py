@@ -59,11 +59,22 @@ def pub_anterior(path):
     return PUB
 
 
+def clave_img(en_rel):
+    return sitio.IMG_PAGINAS.get(es_de(en_rel) or "")
+
+
+def fig(en_rel, tipo="art", prioridad=False):
+    c = clave_img(en_rel)
+    return sitio.figura(c, "en", prefijos(en_rel)[1], tipo, prioridad) if c else ""
+
+
 def head(en_rel, title, desc, otype="article", robots="index, follow, max-image-preview:large", ld=(), alt=True):
     p, a = prefijos(en_rel)
     es_rel = es_de(en_rel)
     hl = sitio.hreflang(es_url(es_rel), url(en_rel)) + "\n" if (alt and es_rel) else ""
     canon = f'<link rel="canonical" href="{url(en_rel)}">\n' if "noindex" not in robots else ""
+    c = clave_img(en_rel)
+    og_img = sitio.og_imagen(c, "en") if c else f'<meta property="og:image" content="{BASE}assets/og.png">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="675">'
     lds = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>\n' for x in ld)
     return f'''<!doctype html>
 <html lang="en">
@@ -80,9 +91,7 @@ def head(en_rel, title, desc, otype="article", robots="index, follow, max-image-
 <meta property="og:url" content="{url(en_rel)}">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
-<meta property="og:image" content="{BASE}assets/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="675">
+{og_img}
 <meta name="theme-color" content="{sitio.THEME}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{a}assets/favicon.svg" type="image/svg+xml">
@@ -131,7 +140,7 @@ def articulo(a):
     path = EN / en_rel
     pub = pub_anterior(path)
     art = {"@context": "https://schema.org", "@type": "Article", "headline": a["h1"], "description": a["desc"],
-           "image": [BASE + "assets/og.png"], "datePublished": pub, "dateModified": pub, "inLanguage": "en",
+           "image": [sitio.img_url(clave_img(en_rel))], "datePublished": pub, "dateModified": pub, "inLanguage": "en",
            "author": AUTHOR, "publisher": PUBLISHER, "mainEntityOfPage": url(en_rel)}
     if path.exists():
         m = re.search(r'"dateModified": "([^"]+)"', path.read_text(encoding="utf-8"))
@@ -147,7 +156,7 @@ def articulo(a):
 <article>
 <h1>{esc(a["h1"])}</h1>
 <p class="meta"><time datetime="{REVIEW[0]}">{REVIEW[1]}</time><span>By <a href="{p}about.html">Six Stars Editorial Team</a></span><span class="chip {cls}">{label}</span></p>
-<div class="answer"><p class="answer-label">Short answer</p><p>{esc(a["answer"])}</p></div>
+<div class="answer"><p class="answer-label">Short answer</p><p>{esc(a["answer"])}</p></div>{fig(en_rel)}
 <div class="prose">
 {a["body"]}
 </div>
@@ -171,7 +180,7 @@ def indice(sec):
     html = head(en_rel, d["title"], d["desc"], otype="website", ld=[bc]) + chrome(en_rel, sec) + f'''
 <main id="main" class="wrap">
 {crumbs(en_rel, None, d["name"])}
-<div class="index-head"><p class="kicker">{len(arts)} answers</p><h1>{esc(d["h1"])}</h1><p class="lead">{esc(d["lead"])}</p></div>
+<div class="index-head"><p class="kicker">{len(arts)} answers</p><h1>{esc(d["h1"])}</h1><p class="lead">{esc(d["lead"])}</p>{fig(en_rel, "index", True)}</div>
 <ul class="list">{lis}</ul>
 </main>
 ''' + tail(en_rel)
@@ -206,6 +215,7 @@ def portada():
 </section>
 <div class="lead-story">
 <article class="lead-main">
+{fig(en_rel, "home", True)}
 <p class="kicker">Beginner's guide</p>
 <h2><a href="beginners-guide.html">12 things to know before you start GTA 6</a></h2>
 <p class="dek">Save to separate slots, bank your cash, register the cars you want to keep and don't count on cheats until you've beaten the story.</p>
@@ -248,7 +258,7 @@ def guia():
 <main id="main" class="wrap narrow">
 <h1>GTA 6 beginner's guide: 12 things to know before you start</h1>
 <p class="meta"><time datetime="{REVIEW[0]}">Version of November 20, 2026</time><span class="chip ok">Free</span></p>
-<div class="answer"><p class="answer-label">In short</p><p>Save to separate slots often, keep your money in the bank, register the cars you want to keep and don't count on cheats until you've beaten the story.</p></div>
+<div class="answer"><p class="answer-label">In short</p><p>Save to separate slots often, keep your money in the bank, register the cars you want to keep and don't count on cheats until you've beaten the story.</p></div>{fig(en_rel)}
 
 <ol class="guide">{lis}</ol>
 <p class="small">Compiled from reviews and guides published at launch. Every point links to a page with its sources. We'll keep adding to it.</p>
@@ -291,6 +301,8 @@ ABOUT = '''<p>Six Stars is an independent, English-language companion to 6 Estre
 <p>The site shows Adsterra ads only if you accept advertising cookies. We don't charge for content and we aren't paid by Rockstar or by the stores we cite.</p>
 <h2>Contact</h2>
 <p>Email: <a href="mailto:contacto@6estrellas.org">contacto@6estrellas.org</a>.</p>
+<h2>Images</h2>
+<p>Game images are official screenshots and artwork published by Rockstar Games on the official GTA VI site, shown with the credit \u201cImage: Rockstar Games.\u201d We don't use images from other sites, watermarked images or leaks, and we don't use the GTA VI logo as this site's brand.</p>
 <h2>Unofficial site</h2>
 <p>This site is not affiliated with, sponsored or endorsed by Rockstar Games or Take-Two Interactive. Grand Theft Auto and GTA are trademarks of their owners and are mentioned only to identify the game.</p>'''
 
@@ -308,7 +320,7 @@ LEGAL = '''<p class="note">Draft prepared to comply with Spanish Law 34/2002 on 
 <p>Six Stars (6 Estrellas in Spanish) is an informational site about the video game Grand Theft Auto VI. It is an <strong>unofficial</strong>, independent site with no connection to Rockstar Games or Take-Two Interactive.</p>
 <h2>3. Intellectual property</h2>
 <p>The text, the beginner's guide and the design of this site are the work of <mark class="fill">[Owner]</mark>. Reproduction in whole or in part without permission is prohibited, except for quotation with a link to the source.</p>
-<p>Game trademarks, names and elements belong to their owners and are mentioned for informational purposes only. If you hold rights and believe they are being infringed, write to the contact email and we'll review it.</p>
+<p>Game trademarks, names and elements belong to their owners and are mentioned for informational purposes only. Game screenshots and artwork are official material published by Rockstar Games, shown with credit, and belong to their owners. If you hold rights and believe they are being infringed, write to the contact email and we'll review it.</p>
 <h2>4. Liability</h2>
 <p>The information is based on public sources cited on each page and may change with game updates. We review the content but can't guarantee it is error-free. External links lead to third-party sites we are not responsible for.</p>
 <h2>5. Advertising and affiliate links</h2>

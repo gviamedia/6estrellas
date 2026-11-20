@@ -1,0 +1,56 @@
+# Imágenes de la web
+
+Todas son capturas o artes oficiales de **Rockstar Games**, de los paquetes de descarga de la web oficial de GTA VI:
+<https://www.rockstargames.com/VI/media>. Se muestran con el crédito «Imagen: Rockstar Games» / «Image: Rockstar Games».
+
+Paquetes de origen:
+
+- `shots`: <https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip>
+- `ultimate`: <https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip>
+
+Generadas con `python herramientas/imagenes.py RUTA_A_LOS_ZIP_EXTRAIDOS` (WebP 800 y 1600 px, 16:9, <= 200 KB).
+
+| Archivo | Origen (paquete / archivo) | Páginas |
+|---|---|---|
+| `assets/img/atardecer-arbol-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_16.jpg` | `preguntas/cuanto-dura.html` (y su versión en inglés) |
+| `assets/img/casa-pilotes-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_SAFEHOUSE_VEHICLES_01.jpg` | `preguntas/comprar-casas.html` (y su versión en inglés) |
+| `assets/img/cheetah-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg` | `dinero/coche-mas-rapido.html` (y su versión en inglés) |
+| `assets/img/coleccion-coches-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_01.jpg` | `dinero/index.html` (y su versión en inglés) |
+| `assets/img/estudio-radio-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Real Dimez/Real_Dimez_04.jpg` | `preguntas/idioma-espanol.html` (y su versión en inglés) |
+| `assets/img/grassrivers-humedal-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Grassrivers/Grassrivers_05.jpg` | `problemas/xbox-one-ps4.html` (y su versión en inglés) |
+| `assets/img/grassrivers-pueblo-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Grassrivers/Grassrivers_02.jpg` | `lugares/index.html` (y su versión en inglés) |
+| `assets/img/jason-fusil-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason Duval/Jason_Duval_16.jpg` | `preguntas/trucos.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-abrazo-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_13.jpg` | `preguntas/finales-decisiones.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-asalto-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_04.jpg` | `preguntas/repetir-misiones.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-banco-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_15.jpg` | `dinero/ganar-dinero.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-camara-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_02.jpg` | `preguntas/trofeos-logros.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-coche-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_03.jpg` | `lugares/protagonistas.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-descapotable-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_11.jpg` | `preguntas/index.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-fuego-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_08.jpg` | `preguntas/guardar-partida.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-moto-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_09.jpg` | `index.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-muelle-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_01.jpg` | `guia-inicio.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-pistola-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_17.jpg` | `preguntas/cambiar-jason-lucia.html` (y su versión en inglés) |
+| `assets/img/jason-lucia-tiroteo-coche-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason and Lucia/Jason_and_Lucia_19.jpg` | `preguntas/cooperativo.html` (y su versión en inglés) |
+| `assets/img/jason-moto-policia-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason Duval/Jason_Duval_11.jpg` | `preguntas/perder-a-la-policia.html` (y su versión en inglés) |
+| `assets/img/jason-pesca-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Jason Duval/Jason_Duval_03.jpg` | `preguntas/misiones-capitulo-1.html` (y su versión en inglés) |
+| `assets/img/kalaga-canon-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Mount Kalaga National Park/Mount_Kalaga_National_Park_04.jpg` | `novedades/gta-6-pc.html` (y su versión en inglés) |
+| `assets/img/kalaga-kayak-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Mount Kalaga National Park/Mount_Kalaga_National_Park_06.jpg` | `preguntas/jugar-sin-internet.html` (y su versión en inglés) |
+| `assets/img/keys-aerea-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Leonida Keys/Leonida_Keys_01.jpg` | `lugares/mapa-leonida.html` (y su versión en inglés) |
+| `assets/img/keys-barcos-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Leonida Keys/Leonida_Keys_05.jpg` | `novedades/gta-6-online.html` (y su versión en inglés) |
+| `assets/img/lowrider-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_RIDEOUT_CUSTOMS_01.jpg` | `novedades/mods.html` (y su versión en inglés) |
+| `assets/img/lucia-apunta-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Lucia Caminos/Lucia_Caminos_13.jpg` | `preguntas/primera-persona.html` (y su versión en inglés) |
+| `assets/img/lucia-cheques-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `People/Lucia Caminos/Lucia_Caminos_08.jpg` | `dinero/banco-y-ahorros.html` (y su versión en inglés) |
+| `assets/img/pistolas-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_WEAPON_VARIANTS_01.jpg` | `preguntas/armas.html` (y su versión en inglés) |
+| `assets/img/taller-coches-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_RIDEOUT_CUSTOMS_03.jpg` | `dinero/coches-garajes.html` (y su versión en inglés) |
+| `assets/img/taller-todoterreno-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_ONE_EYED_WILLIE_03.jpg` | `novedades/actualizaciones-parches.html` (y su versión en inglés) |
+| `assets/img/ultimate-arte-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Ultimate_Edition_Benefits.zip → `ULTIMATE_EDITION_01.jpg` | `novedades/precio-ediciones.html` (y su versión en inglés) |
+| `assets/img/vice-city-aerea-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_03.jpg` | `problemas/ps5-pro-ps5-xbox.html` (y su versión en inglés) |
+| `assets/img/vice-city-atardecer-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_11.jpg` | `preguntas/notas-analisis.html` (y su versión en inglés) |
+| `assets/img/vice-city-cartel-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_01.jpg` | `novedades/index.html` (y su versión en inglés) |
+| `assets/img/vice-city-club-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_13.jpg` | `lugares/emisoras-radio.html` (y su versión en inglés) |
+| `assets/img/vice-city-coche-tuneado-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_24.jpg` | `novedades/gta-plus.html` (y su versión en inglés) |
+| `assets/img/vice-city-gasolinera-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_22.jpg` | `problemas/no-carga-errores.html` (y su versión en inglés) |
+| `assets/img/vice-city-noche-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_08.jpg` | `problemas/index.html` (y su versión en inglés) |
+| `assets/img/vice-city-puerto-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_15.jpg` | `problemas/edicion-fisica-sin-disco.html` (y su versión en inglés) |
+| `assets/img/vice-city-skyline-noche-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_27.jpg` | `problemas/psn-caido-inicio-sesion.html` (y su versión en inglés) |
+| `assets/img/vice-city-torres-{800,1600}.webp` | https://media-rockstargames-com.akamaized.net/VI/downloads/screenshots/GTAVI_Screenshots.zip → `Places/Vice City/Vice_City_10.jpg` | `problemas/tamano-descarga.html` (y su versión en inglés) |
