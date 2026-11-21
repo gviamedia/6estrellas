@@ -20,6 +20,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://6estrellas.org/"
 EXCL_DIRS = {".git", "auditoria", "herramientas"}
 NO_INDEX = {"google178e73f6eb6598d4.html"}
+# Páginas solo en español (las que van en pareja con los vídeos de @6estrellas.gta): no llevan hreflang.
+SOLO_ES = ("guias/",)
 
 errores, avisos = [], []
 
@@ -104,7 +106,7 @@ for p in paginas():
     hl = dict(re.findall(r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"', s))
     if hl:
         hreflangs[url] = hl
-    elif HAY_EN and p.name != "404.html" and not es_noindex:
+    elif HAY_EN and p.name != "404.html" and not es_noindex and not nombre.startswith(SOLO_ES):
         err(f"{nombre}: sin hreflang")
     for m in re.finditer(r'(?:href|src)="([^"#?]+)(?:[?#][^"]*)?"', s):
         h = m.group(1)

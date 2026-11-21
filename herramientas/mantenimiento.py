@@ -51,10 +51,12 @@ def _indice(lang):
         elif rel.startswith("en/"):
             continue
         seccion = rel.split("/")[0]
-        if seccion not in secs and rel != guia:
+        if seccion not in secs and rel != guia and not (lang == "es" and seccion == "guias"):
             continue
-        if p.name == "index.html":
+        if p.name == "index.html" and seccion != "guias":
             continue
+        if p.name == "index.html":  # guias/<tema>/index.html se enlaza por su carpeta
+            rel = rel[: -len("index.html")]
         s = p.read_text(encoding="utf-8")
         h1 = re.search(r"<h1>(.*?)</h1>", s, re.S)
         resp = re.search(r'<div class="answer">.*?<p class="answer-label">.*?</p>\s*<p>(.*?)</p>', s, re.S)
@@ -63,7 +65,7 @@ def _indice(lang):
         items.append({
             "u": rel,
             "t": texto(h1.group(1)) if h1 else rel,
-            "s": secs.get(seccion, nombre),
+            "s": secs.get(seccion, "Guías" if seccion == "guias" else nombre),
             "r": texto(resp.group(1)) if resp else (texto(desc.group(1)) if desc else ""),
             "d": texto(desc.group(1)) if desc else "",
             "c": texto(cuerpo.group(1))[:1500] if cuerpo else "",

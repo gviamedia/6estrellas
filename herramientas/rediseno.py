@@ -47,6 +47,8 @@ def items_de_indice(sec):
 
 
 def descripcion(rel):
+    if rel.endswith("/"):  # páginas en carpeta propia (p. ej. guias/antes-de-jugar/)
+        rel += "index.html"
     s = (ROOT / rel).read_text(encoding="utf-8")
     m = re.search(r'<meta name="description" content="([^"]*)"', s)
     return m.group(1) if m else ""
